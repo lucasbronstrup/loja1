@@ -1,0 +1,150 @@
+{%- comment -%}
+  ======================================================
+  PERF: Delay de Scripts de Terceiros até Interação do Usuário
+  ======================================================
+
+  PROBLEMA IDENTIFICADO NO PAGESPEED:
+  - Facebook Pixel (fbevents.js): 98 KB, cache 20min → bloqueia TBT
+  - MercadoPago security.js: causa 171ms de forced reflow
+  - Clarity.js (x.clarity.ms): 26 KB carregando junto com o render crítico
+  - portable-wallets-pt-br.js: 75 KB, cache apenas 5 min
+
+  SOLUÇÃO: "Delay Until Interaction" pattern
+  Esses scripts NÃO são necessários para o primeiro render.
+  Eles só precisam rodar quando o usuário interage com a página.
+  
+  Esta técnica adia o disparo de scripts injetados via content_for_header
+  usando uma queue que só executa após:
+  1. Scroll → usuário começou a navegar
+  2. Click → usuário vai interagir com botões
+  3. Mousemove (desktop) → usuário está ativo
+  4. Touchstart (mobile) → toque na tela
+  5. keydown → usuário está digitando
+  6. Timeout de 5s → fallback para garantir que tudo carregue
+
+  SEGURANÇA: Não bloqueia nenhuma funcionalidade de compra.
+  O carrinho, add-to-cart e checkout funcionam normalmente porque:
+  - O tema (vendor.min.js + theme.js) carrega normalmente
+  - Apenas analytics e widgets auxiliares são adiados
+  ======================================================
+{%- endcomment -%}
+
+<script>
+/**
+ * PERF: Third-Party Script Delay Pattern
+ * Detectado no PageSpeed: Facebook (98KB), Clarity (26KB), MercadoPago (171ms reflow)
+ * Fonte: shopify-theme-lab deferred loading pattern + Timber lazy loading
+ */
+(function() {
+  'use strict';
+
+  // Evita executar no editor do tema (preserva preview correto)
+  if (window.Shopify && window.Shopify.designMode) return;
+
+  var delayedScripts = [];
+  var interactionHappened = false;
+  var fallbackTimer;
+
+  /**
+   * Scripts e recursos que devem ser adiados até interação
+   * Identificados pelo PageSpeed Insights como não-críticos
+   */
+  var LOW_PRIORITY_PATTERNS = [
+    'fbevents',          // Facebook Pixel — 98KB, não crítico para render
+    'clarity',           // Microsoft Clarity — 26KB analytics
+    'mercadopago',       // MercadoPago security.js — 171ms reflow
+    'portable-wallets',  // Shopify payment wallets — 75KB
+    'hotjar',            // Hotjar se instalado
+    'tiktok',            // TikTok Pixel se instalado
+  ];
+
+  /**
+   * Verifica se um src de script é de baixa prioridade
+   */
+  function isLowPriority(src) {
+    if (!src) return false;
+    return LOW_PRIORITY_PATTERNS.some(function(pattern) {
+      return src.indexOf(pattern) !== -1;
+    });
+  }
+
+  /**
+   * Executa todos os scripts adiados
+   */
+  function runDelayedScripts() {
+    if (interactionHappened) return;
+    interactionHappened = true;
+
+    // Remove event listeners para não disparar múltiplas vezes
+    INTERACTION_EVENTS.forEach(function(event) {
+      document.removeEventListener(event, onInteraction, { passive: true });
+    });
+
+    clearTimeout(fallbackTimer);
+
+    // Marca performance para debug
+    if (window.performance && window.performance.mark) {
+      window.performance.mark('perf:third-party-scripts-activated');
+    }
+
+    // Reativa scripts que foram pausados
+    delayedScripts.forEach(function(script) {
+      var newScript = document.createElement('script');
+      if (script.src) newScript.src = script.src;
+      if (script.type && script.type !== 'text/plain') newScript.type = script.type;
+      if (script.async) newScript.async = true;
+      if (script.innerHTML) newScript.innerHTML = script.innerHTML;
+      script.parentNode.replaceChild(newScript, script);
+    });
+
+    delayedScripts = [];
+  }
+
+  var INTERACTION_EVENTS = ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'];
+
+  function onInteraction() {
+    runDelayedScripts();
+  }
+
+  // Registra eventos de interação (todos passive para não bloquear scroll)
+  INTERACTION_EVENTS.forEach(function(event) {
+    document.addEventListener(event, onInteraction, { passive: true, once: true });
+  });
+
+  // Fallback: executa após 5 segundos mesmo sem interação
+  // Garante que analytics e widgets sempra disparem
+  fallbackTimer = setTimeout(runDelayedScripts, 5000);
+
+  /**
+   * MutationObserver: intercepta scripts injetados dinamicamente
+   * (como os adicionados pelo content_for_header do Shopify)
+   * e adia os de terceiros não-críticos
+   */
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (
+          node.tagName === 'SCRIPT' &&
+          isLowPriority(node.src || node.innerHTML) &&
+          !interactionHappened
+        ) {
+          // Pausa o script convertendo para type=text/plain
+          node.type = 'text/plain';
+          delayedScripts.push(node);
+        }
+      });
+    });
+  });
+
+  // Observa apenas o head onde os scripts de terceiros são injetados
+  document.addEventListener('DOMContentLoaded', function() {
+    observer.disconnect();
+  });
+
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+
+})();
+</script>

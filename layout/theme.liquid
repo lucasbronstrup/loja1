@@ -21,10 +21,8 @@
 
     <meta name='dmca-site-verification' content='cGFiWkZaWXUyNmJIT2J4WnZJVVpDQ29vYnBzSy90RWdhRklrVU9BWUVDUT01' />
     
-    {%- comment -%}SKILL: seo-audit | Meta robots com preview máximo — desbloqueia snippets ricos no Google{%- endcomment -%}
+    {%- comment -%}SKILL: seo-audit | Meta robots com preview máximo{%- endcomment -%}
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-
-    {%- comment -%}SKILL: ai-seo | Declarar suporte a content discovery por agentes de IA{%- endcomment -%}
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     {%- if page_description -%}
@@ -39,21 +37,30 @@
     {%- endif -%}
 
     {%- comment -%}
+      PERF CORREÇÃO CRÍTICA: Delay de scripts de terceiros.
+      O MutationObserver precisa estar ativo ANTES do content_for_header
+      para interceptar os scripts de Facebook, Clarity, MercadoPago.
+      Identificados no PageSpeed: 98KB fbevents, 26KB clarity, 171ms reflow mercadopago.
+    {%- endcomment -%}
+    {%- render 'performance-delay-third-party' -%}
+
+    {{ content_for_header }}
+
+    {%- comment -%}
       PERF #7 [Skeleton + Timber pattern]: Resource hints — preconnect CDN Shopify, fonts e imagens
-      Skeleton-theme usa preconnect para CDN de assets, Timber usa dns-prefetch para tudo externo.
-      Ação: preconnect faz TCP handshake antecipado; dns-prefetch resolve DNS apenas.
     {%- endcomment -%}
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.shopify.com">
     <link rel="dns-prefetch" href="https://monorail-edge.shopifysvc.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    {%- comment -%}Terceiros detectados no PageSpeed — preconnect reduz latencia inicial{%- endcomment -%}
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+    <link rel="dns-prefetch" href="https://www.mercadopago.com.br">
+    <link rel="dns-prefetch" href="https://x.clarity.ms">
 
     {%- comment -%}
       PERF #3 [Themekit + Skeleton pattern]: Preload de fontes woff2 com fetchpriority high
-      Themekit template usa inline preload para fontes críticas.
-      Skeleton-theme usa font-display: swap (veja css-variables.liquid)
-      Resultado: elimina FOUT e reduz CLS de tipografia
     {%- endcomment -%}
     {%- unless settings.heading_font.system? -%}
       <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin fetchpriority="high">
@@ -67,13 +74,10 @@
     {%- render 'microdata-schema' -%}
     {%- render 'css-variables' -%}
     {%- render 'js-variables' -%}
-    {%- comment -%}SKILL: copywriting+seo-audit | Extras de SEO: keywords dinâmicas, hreflang, RSS{%- endcomment -%}
     {%- render 'seo-head-extras' -%}
+
     {%- comment -%}
-      PERF #2 [Skeleton-theme pattern]: CSS crítico inline
-      Skeleton-theme/assets/critical.css serve como base para CSS inline no <head>.
-      Injetamos nosso próprio snippet que contém os estilos críticos above-the-fold
-      para evitar flash de conteúdo sem estilo (FOUC) e melhorar FCP.
+      PERF #2 [Skeleton-theme pattern]: CSS crítico inline above-the-fold
     {%- endcomment -%}
     {%- render 'performance-critical-css' -%}
 
@@ -94,9 +98,6 @@
 
     {%- comment -%}
       PERF #4 [ShopifyThemeLab pattern]: modulepreload para JS principal
-      shopify-theme-lab/package.json usa webpack com clean-webpack-plugin e code splitting.
-      modulepreload faz o browser baixar e parsear os módulos ES antecipadamente
-      sem executar — garante que theme.js e vendor.min.js estejam prontos quando chamados.
     {%- endcomment -%}
     <link rel="modulepreload" href="{{ 'vendor.min.js' | asset_url }}" as="script">
     <link rel="modulepreload" href="{{ 'theme.js' | asset_url }}" as="script">
@@ -104,14 +105,8 @@
     <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
     <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
 
-    {{ content_for_header }}
-
     {%- comment -%}
       PERF #11 [Skeleton pattern]: CSS não-bloqueante com media=print + onload trick
-      Skeleton-theme ensina o padrão de carregar CSS principal sem bloquear renderização.
-      media="print" → onload → media="all" garante que theme.css não bloqueie o FCP.
-      O noscript é o fallback para navegadores sem JS.
-      NOTA: preload:true já estava antes — mantemos ambos para compatibilidade máxima.
     {%- endcomment -%}
     <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
