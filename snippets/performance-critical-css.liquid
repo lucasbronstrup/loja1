@@ -121,34 +121,4 @@
   .product-card__image[loading="lazy"] {
     background-color: rgb(var(--background, 245 245 245));
   }
-
-  /* 
-   * NEW PERF ABOVE THE FOLD: Header & Announcement Bar 
-   * Previne layout shift no topo da página
-   */
-  .announcement-bar {
-    display: block;
-    background: var(--announcement-bar-background, #000);
-    color: var(--announcement-bar-text-color, #fff);
-    text-align: center;
-    padding: 10px 0;
-    min-height: 40px;
-  }
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
-    background: var(--header-background, #fff);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    min-height: 70px;
-  }
-  .header__logo-image {
-    max-height: var(--header-logo-height, 40px);
-    width: auto;
-  }
-  .header__icon-list {
-    display: flex;
-    gap: 15px;
-  }
 </style>

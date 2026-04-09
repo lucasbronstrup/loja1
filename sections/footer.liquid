@@ -71,16 +71,7 @@
                       <ul class="v-stack gap-2.5 unstyled-list" role="list">
                         {%- for link in menu.links -%}
                           <li>
-                            {%- comment -%}BEST PRACTICE: rel=noopener para links externos (evita tabnapping){%- endcomment -%}
-                            {%- if link.url contains 'http' and link.url contains '://' -%}
-                              {%- unless link.url contains shop.domain -%}
-                                <a href="{{ link.url }}" class="link-faded" target="_blank" rel="noopener noreferrer">{{ link.title }}</a>
-                              {%- else -%}
-                                <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
-                              {%- endunless -%}
-                            {%- else -%}
-                              <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
-                            {%- endif -%}
+                            <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
                           </li>
                         {%- endfor -%}
                       </ul>
