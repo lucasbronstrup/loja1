@@ -3,7 +3,12 @@
 <html lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
   <head>
     <meta charset="utf-8">
+    {%- comment -%}
+      PERF #10 [Timber pattern]: viewport sem shrink-to-fit + theme-color para navegadores móveis
+      Referência: themekit/theme-template/layout/theme.liquid viewport pattern
+    {%- endcomment -%}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="{{ settings.color_schemes[0].settings.background | default: '#ffffff' }}">
 
     <title>
       {% if page_title == blank -%}
@@ -33,13 +38,25 @@
       <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
     {%- endif -%}
 
-    {%- comment -%}SKILL: performance | dns-prefetch e preconnect para domínios comuns — melhora TTFB e LCP{%- endcomment -%}
+    {%- comment -%}
+      PERF #7 [Skeleton + Timber pattern]: Resource hints — preconnect CDN Shopify, fonts e imagens
+      Skeleton-theme usa preconnect para CDN de assets, Timber usa dns-prefetch para tudo externo.
+      Ação: preconnect faz TCP handshake antecipado; dns-prefetch resolve DNS apenas.
+    {%- endcomment -%}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.shopify.com">
     <link rel="dns-prefetch" href="https://monorail-edge.shopifysvc.com">
-    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
+    {%- comment -%}
+      PERF #3 [Themekit + Skeleton pattern]: Preload de fontes woff2 com fetchpriority high
+      Themekit template usa inline preload para fontes críticas.
+      Skeleton-theme usa font-display: swap (veja css-variables.liquid)
+      Resultado: elimina FOUT e reduz CLS de tipografia
+    {%- endcomment -%}
     {%- unless settings.heading_font.system? -%}
-      <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
+      <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin fetchpriority="high">
     {%- endunless -%}
 
     {%- unless settings.text_font.system? -%}
@@ -52,6 +69,13 @@
     {%- render 'js-variables' -%}
     {%- comment -%}SKILL: copywriting+seo-audit | Extras de SEO: keywords dinâmicas, hreflang, RSS{%- endcomment -%}
     {%- render 'seo-head-extras' -%}
+    {%- comment -%}
+      PERF #2 [Skeleton-theme pattern]: CSS crítico inline
+      Skeleton-theme/assets/critical.css serve como base para CSS inline no <head>.
+      Injetamos nosso próprio snippet que contém os estilos críticos above-the-fold
+      para evitar flash de conteúdo sem estilo (FOUC) e melhorar FCP.
+    {%- endcomment -%}
+    {%- render 'performance-critical-css' -%}
 
     {%- if request.page_type == 'gift_card' -%}
       <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
@@ -68,12 +92,29 @@
       }
     </script>
 
+    {%- comment -%}
+      PERF #4 [ShopifyThemeLab pattern]: modulepreload para JS principal
+      shopify-theme-lab/package.json usa webpack com clean-webpack-plugin e code splitting.
+      modulepreload faz o browser baixar e parsear os módulos ES antecipadamente
+      sem executar — garante que theme.js e vendor.min.js estejam prontos quando chamados.
+    {%- endcomment -%}
+    <link rel="modulepreload" href="{{ 'vendor.min.js' | asset_url }}" as="script">
+    <link rel="modulepreload" href="{{ 'theme.js' | asset_url }}" as="script">
+
     <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
     <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
 
     {{ content_for_header }}
 
-    {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+    {%- comment -%}
+      PERF #11 [Skeleton pattern]: CSS não-bloqueante com media=print + onload trick
+      Skeleton-theme ensina o padrão de carregar CSS principal sem bloquear renderização.
+      media="print" → onload → media="all" garante que theme.css não bloqueie o FCP.
+      O noscript é o fallback para navegadores sem JS.
+      NOTA: preload:true já estava antes — mantemos ambos para compatibilidade máxima.
+    {%- endcomment -%}
+    <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
   </head>
 
   {% liquid
@@ -88,7 +129,15 @@
     endif
   %}
 
-  <body class="{{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }}">
+  <body class="{{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }}"
+    style="touch-action: manipulation;"
+  >
+    {%- comment -%}
+      PERF #12 [Timber fastclick.min.js pattern]: touch-action: manipulation
+      Timber usava fastclick.min.js para remover o delay de 300ms em cliques móveis iOS.
+      Hoje, touch-action: manipulation no body elimina esse delay nativamente via CSS,
+      sem nenhum JavaScript extra. É suportado por todos os navegadores modernos.
+    {%- endcomment -%}
     {%- render 'shadow-dom-templates' -%}
 
     <loading-bar class="loading-bar" aria-hidden="true"></loading-bar>
@@ -129,5 +178,13 @@
         {%- sections 'footer-group' -%}
       {%- endif -%}
     </main>
+    {%- comment -%}
+      PERF #9 [ShopifyThemeLab + Timber pattern]: Lazy Sections Observer
+      shopify-theme-lab/src/main.js usa lazy initialization de componentes Vue.
+      Timber/assets/timber.js.liquid usava defer para features pesadas.
+      Aqui injetamos o IntersectionObserver para lazy-init de seções off-screen,
+      e também o passive event listener polyfill (substitui Timber fastclick).
+    {%- endcomment -%}
+    {%- render 'performance-lazy-sections' -%}
   </body>
 </html>

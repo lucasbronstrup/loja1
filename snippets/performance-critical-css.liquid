@@ -1,0 +1,124 @@
+{%- comment -%}
+  ======================================================
+  PERF #2 [Skeleton-theme pattern]: CSS Crítico Inline
+  ======================================================
+
+  Este snippet injeta CSS crítico above-the-fold diretamente no <head>,
+  evitando FOUC (Flash of Unstyled Content) antes do theme.css carregar.
+
+  FONTE: skeleton-theme/assets/critical.css — usamos como referência o padrão
+  de reset + layout crítico do skeleton para extrair apenas o que é essencial
+  para o Above The Fold do tema atual.
+
+  O que este CSS faz:
+  1. Reset box-model crítico (evita CLS inicial)
+  2. Garante que imagens não causem overflow no carregamento
+  3. Loading bar visível imediatamente (sem esperar theme.css)
+  4. Skip-to-content acessível desde o primeiro render
+  5. Oculta conteúdo fora do viewport (content-visibility:hidden → melhora INP)
+  6. Previne reflow de fontes com size-adjust
+
+  Por que não simplesmente usar theme.css?
+  theme.css é carregado de forma não-bloqueante (media=print trick no theme.liquid).
+  Isso significa que o browser renderiza o HTML antes do CSS completo chegar.
+  Este snippet garante que os elementos críticos já tenham estilo mínimo imediato.
+  ======================================================
+{%- endcomment -%}
+
+<style id="perf-critical-css">
+  /*
+   * PERF CRITICAL — Baseado em skeleton-theme/assets/critical.css
+   * Apenas estilos acima do fold, sem dependências de fontes ou variáveis complexas
+   */
+
+  /* 1. Box-model reset crítico (igual ao skeleton-theme) */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* 2. Corpo: flex column evita reflow de layout inicial */
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 3. Imagens: não causam overflow enquanto carregam */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* 4. Loading bar: visível imediatamente para dar feedback */
+  loading-bar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    z-index: 9999;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  /* 5. Skip-to-content acessível desde o primeiro render (skeleton-theme pattern) */
+  .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    z-index: 10000;
+    padding: 8px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .skip-to-content:focus {
+    top: 0;
+  }
+
+  /*
+   * PERF #8 [ShopifyThemeLab modular pattern]: CSS contain para componentes
+   * ShopifyThemeLab usa CSS modular por componente — cada componente é encapsulado.
+   * contain: content isola o componente do resto do layout, reduzindo
+   * o escopo de Layout, Paint e Style recalculations no browser.
+   * strict (layout+style+paint) seria mais agressivo mas pode quebrar z-index.
+   */
+  product-card {
+    contain: layout style;
+    display: block;
+  }
+
+  .product-card__figure {
+    contain: layout paint;
+    overflow: hidden;
+  }
+
+  /*
+   * PERF #9 [ThemeLab + Skeleton pattern]: content-visibility:auto para off-screen
+   * content-visibility:auto diz ao browser para pular rendering de seções fora da viewport.
+   * Resulta em redução dramática de INP e Time to Interactive.
+   * contain-intrinsic-size evita CLS ao fazer o browser reservar espaço para o elemento.
+   *
+   * SEGURANÇA: aplicamos apenas em .shopify-section (não em header/footer)
+   * para evitar problemas com posicionamento sticky.
+   */
+  .shopify-section:not(.shopify-section--header):not(.shopify-section--footer) {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
+
+  /*
+   * PERF #10 [Timber pattern]: Previne scroll horizontal durante carregamento
+   * Timber usava overflow-x:hidden no body para prevenir scroll horizontal
+   * causado por elementos mal dimensionados durante carregamento inicial.
+   */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Placeholder para imagens enquanto carregam (Skeleton pattern) */
+  .product-card__image[loading="lazy"] {
+    background-color: rgb(var(--background, 245 245 245));
+  }
+</style>

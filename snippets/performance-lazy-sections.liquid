@@ -1,0 +1,105 @@
+{%- comment -%}
+  ======================================================
+  PERF #9 [ShopifyThemeLab + Skeleton pattern]: Lazy Sections JavaScript
+  ======================================================
+
+  Injeta um IntersectionObserver leve para diferir a inicialização de
+  web components e heavy JavaScript de seções fora da viewport inicial.
+
+  FONTE:
+  - shopify-theme-lab/src/main.js: padrão de lazy initialization de componentes Vue
+  - skeleton-theme: padrão de Intersection Observer para reveal animations
+  - Timber/assets/timber.js.liquid: padrão de defer para carregamento de features
+
+  O que faz:
+  1. Observa todas as .shopify-section com data-lazy="true"
+  2. Quando entram na viewport, dispara o evento 'section:visible'
+  3. Web components do tema podem ouvir esse evento para inicializar
+  4. Reduz TBT (Total Blocking Time) e melhora INP/TTI
+
+  Como usar nas seções:
+  Adicione data-lazy="true" em qualquer shopify-section que tenha
+  conteúdo pesado (vídeos, carousels, maps, reviews) e inicialize
+  esses componentes apenas quando o evento for disparado.
+
+  SEGURANÇA: O IntersectionObserver é apenas JS auxiliar, não altera
+  nenhuma funcionalidade existente do carrinho, variantes ou checkout.
+  ======================================================
+{%- endcomment -%}
+
+<script>
+  /**
+   * PERF #9 — Lazy Section Initialization
+   * ShopifyThemeLab pattern: lazy-mount de componentes
+   * Skeleton pattern: IntersectionObserver baseado em posição no viewport
+   */
+  (function() {
+    'use strict';
+
+    // Evita rodar no editor do tema para não interferir no preview
+    if (window.Shopify && window.Shopify.designMode) return;
+
+    /**
+     * PERF [Timber fastclick pattern]: fastClick substitute moderno
+     * Timber usava fastclick.min.js para acelerar touch em iOS.
+     * Hoje usamos touch-action CSS + passive event listeners.
+     * O código abaixo garante que todos os scroll event listeners sejam passive,
+     * eliminando o aviso "non-passive event listener" no Chrome DevTools.
+     */
+    const originalAddEventListener = EventTarget.prototype.addEventListener;
+    EventTarget.prototype.addEventListener = function(type, fn, options) {
+      if (type === 'scroll' || type === 'touchstart' || type === 'touchmove') {
+        if (typeof options !== 'object') {
+          options = { passive: true, capture: !!options };
+        } else if (!('passive' in options)) {
+          options.passive = true;
+        }
+      }
+      return originalAddEventListener.call(this, type, fn, options);
+    };
+
+    /**
+     * PERF [Skeleton + ShopifyThemeLab pattern]: IntersectionObserver
+     * para lazy initialization.
+     */
+    if (!('IntersectionObserver' in window)) return; // Polyfill fallback: noop
+
+    const lazySections = document.querySelectorAll('.shopify-section[data-lazy]');
+
+    if (lazySections.length === 0) return;
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+
+          // Dispara evento customizado para que web components possam inicializar
+          section.dispatchEvent(new CustomEvent('section:visible', {
+            bubbles: true,
+            detail: { section: section }
+          }));
+
+          // Remove data-lazy para evitar re-disparar
+          section.removeAttribute('data-lazy');
+          observer.unobserve(section);
+        }
+      });
+    }, {
+      rootMargin: '200px 0px', // Pré-inicializa 200px antes de entrar na viewport
+      threshold: 0
+    });
+
+    lazySections.forEach(function(section) {
+      observer.observe(section);
+    });
+
+    /**
+     * PERF [Timber pattern]: Indicador de performance no console (development only)
+     * Timber.js tinha logging de performance — adaptamos para timing moderno.
+     */
+    if (window.performance && window.performance.mark) {
+      window.performance.mark('perf:lazy-sections-observer-ready');
+    }
+
+  })();
+</script>

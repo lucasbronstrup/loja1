@@ -75,21 +75,35 @@
 
         {%- liquid
           assign main_media_loading_strategy = null
+          assign main_media_fetchpriority = 'auto'
 
-          if section.index > 3 or position > 3
+          comment
+            PERF #5 [Skeleton image.liquid pattern]: lazy loading inteligente por posição.
+            Skeleton-theme/snippets/image.liquid define loading=lazy por padrão.
+            Os primeiros 2 cards (hero area) devem ser eager + fetchpriority=high para LCP.
+            Os demais devem ser lazy para economizar banda e reduzir requests iniciais.
+            Timber usava uma técnica semelhante com respond.js — hoje é nativo no browser.
+          endcomment
+
+          if section.index > 1 or position > 2
             assign main_media_loading_strategy = 'lazy'
+            assign main_media_fetchpriority = 'low'
+          elsif position == 1 or position == blank
+            assign main_media_fetchpriority = 'high'
           endif
-
-          # If the "custom.card_image" metafield exists for this product we use this one, otherwise we default as the featured image
-          assign featured_media = product.metafields.custom.card_image.value | default: product.featured_media
         -%}
 
         {%- capture main_image_classes -%}product-card__image product-card__image--primary {% if settings.product_image_aspect_ratio contains 'crop' %}object-cover{% endif %} aspect-{{ settings.product_image_aspect_ratio | split: '_' | first }}{%- endcapture -%}
+
+        {%- comment -%}PERF #6 [Themekit + Skeleton pattern]: metafield de imagem customizada + fetchpriority dinâmico{%- endcomment -%}
+        {%- assign featured_media = product.metafields.custom.card_image.value | default: product.featured_media -%}
+
         {{-
           featured_media
           | image_url: width: featured_media.width
           | image_tag:
             loading: main_media_loading_strategy,
+            fetchpriority: main_media_fetchpriority,
             sizes: sizes,
             widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
             draggable: 'false',
