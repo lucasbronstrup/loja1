@@ -64,7 +64,7 @@
         {%- render 'product-badges', product: product, vertical: true, context: 'card' -%}
       {%- endif -%}
 
-      <a href="{{ product.url }}" class="product-card__media" draggable="false" data-instant>
+      <a href="{{ product.url }}" class="product-card__media" draggable="false" data-instant aria-label="{{ product.title | escape }}">
         {%- capture sizes -%}
           {%- if stacked -%}
             (max-width: 699px) calc(100vw / {{ section.settings.products_per_row_mobile }}), (max-width: 999px) calc(100vw / {{ 3 | at_most: section.settings.products_per_row_desktop | default: 3 }} - 64px), calc((100vw - 96px) / {{ section.settings.products_per_row_desktop | default: 3 }} - (24px / {{ section.settings.products_per_row_desktop | default: 3 }} * {{ section.settings.products_per_row_desktop | default: 3 | minus: 1 }}))
@@ -107,6 +107,7 @@
             sizes: sizes,
             widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
             draggable: 'false',
+            alt: featured_media.alt | default: product.title,
             class: main_image_classes
         -}}
 
