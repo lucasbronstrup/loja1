@@ -13,15 +13,36 @@
   - https://developers.pinterest.com/tools/url-debugger/
 {%- endcomment -%}
 
+{%- comment -%}SKILL: social-meta-tags | SEO-OPTIMIZED Open Graph + Twitter Cards{%- endcomment -%}
+
+{%- comment -%}Locale para OG — melhora compartilhamentos regionais{%- endcomment -%}
+<meta property="og:locale" content="{{ shop.locale | replace: '-', '_' }}">
+
 {%- if request.page_type == 'product' -%}
   <meta property="og:type" content="product">
   <meta property="og:title" content="{{ product.title | strip_html | escape }}">
   <meta property="product:price:amount" content="{{ product.selected_or_first_available_variant.price | money_without_currency | strip_html | escape }}">
   <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
   <meta property="product:availability" content="{% if product.available %}in stock{% else %}out of stock{% endif %}">
+  {%- if product.vendor != blank -%}
+    <meta property="product:brand" content="{{ product.vendor | escape }}">
+  {%- endif -%}
+  {%- if product.selected_or_first_available_variant.sku != blank -%}
+    <meta property="product:retailer_item_id" content="{{ product.selected_or_first_available_variant.sku | escape }}">
+  {%- endif -%}
 {%- elsif request.page_type == 'article' -%}
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ article.title | strip_html | escape }}">
+  <meta property="article:published_time" content="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}">
+  {%- if article.user.name != blank -%}
+    <meta property="article:author" content="{{ article.user.name | escape }}">
+  {%- endif -%}
+  {%- if blog.handle != blank -%}
+    <meta property="article:section" content="{{ blog.title | escape }}">
+  {%- endif -%}
+  {%- for tag in article.tags -%}
+    <meta property="article:tag" content="{{ tag | escape }}">
+  {%- endfor -%}
 {%- elsif request.page_type == 'collection' -%}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ collection.title | strip_html | escape }}">
@@ -31,10 +52,20 @@
 {%- endif -%}
 
 {%- if page_image -%}
-  <meta property="og:image" content="http:{{ page_image | image_url: width: 2048 }}">
-  <meta property="og:image:secure_url" content="https:{{ page_image | image_url: width: 2048 }}">
-  <meta property="og:image:width" content="{{ page_image.width }}">
-  <meta property="og:image:height" content="{{ page_image.height }}">
+  <meta property="og:image" content="http:{{ page_image | image_url: width: 1200 }}">
+  <meta property="og:image:secure_url" content="https:{{ page_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {%- if page_image.alt != blank -%}
+    <meta property="og:image:alt" content="{{ page_image.alt | escape }}">
+  {%- elsif request.page_type == 'product' -%}
+    <meta property="og:image:alt" content="{{ product.title | escape }}">
+  {%- elsif request.page_type == 'article' -%}
+    <meta property="og:image:alt" content="{{ article.title | escape }}">
+  {%- else -%}
+    <meta property="og:image:alt" content="{{ shop.name | escape }}">
+  {%- endif -%}
+  <meta property="og:image:type" content="image/jpeg">
 {%- endif -%}
 
 {%- if page_description -%}
@@ -55,7 +86,9 @@
   - https://dev.twitter.com/cards/types/summary
 {%- endcomment -%}
 
-<meta name="twitter:card" content="summary">
+{%- comment -%}SKILL: social-meta-tags | Twitter summary_large_image aumenta CTR em até 3x{%- endcomment -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ shop.name | handle }}">
 
 {%- if request.page_type == 'product' -%}
   <meta name="twitter:title" content="{{ product.title | escape }}">
@@ -72,6 +105,12 @@
 {%- endif -%}
 
 {%- if page_image -%}
-  <meta name="twitter:image" content="https:{{ page_image | image_url: width: 1200, height: 1200, crop: 'center' }}">
-  <meta name="twitter:image:alt" content="{{ page_image.alt | escape }}">
+  <meta name="twitter:image" content="https:{{ page_image | image_url: width: 1200, height: 630, crop: 'center' }}">
+  {%- if page_image.alt != blank -%}
+    <meta name="twitter:image:alt" content="{{ page_image.alt | escape }}">
+  {%- elsif request.page_type == 'product' -%}
+    <meta name="twitter:image:alt" content="{{ product.title | escape }}">
+  {%- else -%}
+    <meta name="twitter:image:alt" content="{{ shop.name | escape }}">
+  {%- endif -%}
 {%- endif -%}

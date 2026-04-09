@@ -1,17 +1,135 @@
 {%- comment -%}
-  This snippet structures the micro-data using JSON-LD specification. Starting from Prestige 10, we are using
-  the structured_data built-in filter to ensure that Shopify can keep it up to date without requiring theme upgrade. If
-  you believe some information for products are missing, please reach Shopify support directly, as it is no longer
-  managed at the theme level.
+  SKILL: schema-markup | JSON-LD Otimizado — Produto, Artigo, Coleção, FAQ, Breadcrumb
+  - Produto: brand, sku, color, material via metafields
+  - Artigo: author, dateModified, publisher
+  - Coleção: CollectionPage com descrição
+  - FAQ: lê metafield custom.faq_items para gerar FAQPage
+  - Bug fix: breadcrumb article usava blog.title em vez de article.title
 {%- endcomment -%}
 
 {%- if request.page_type == 'product' -%}
+  {%- comment -%}Schema nativo do Shopify (contém offers, aggregateRating se disponível){%- endcomment -%}
   <script type="application/ld+json">
     {{- product | structured_data -}}
   </script>
+
+  {%- comment -%}Schema enriquecido com campos extras que Shopify não inclui por padrão{%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ shop.url | append: product.url | json }},
+    {%- if product.vendor != blank -%}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+    {%- endif -%}
+    {%- if product.selected_or_first_available_variant.sku != blank -%}
+    "sku": {{ product.selected_or_first_available_variant.sku | json }},
+    "gtin": {{ product.selected_or_first_available_variant.sku | json }},
+    {%- endif -%}
+    {%- if product.metafields.custom.cor != blank -%}
+    "color": {{ product.metafields.custom.cor | json }},
+    {%- endif -%}
+    {%- if product.metafields.custom.material != blank -%}
+    "material": {{ product.metafields.custom.material | json }},
+    {%- endif -%}
+    {%- if product.metafields.custom.peso != blank -%}
+    "weight": {{ product.metafields.custom.peso | json }},
+    {%- endif -%}
+    {%- if product.featured_image -%}
+    "image": [
+      "https:{{ product.featured_image | image_url: width: 1200 }}"
+    ],
+    {%- endif -%}
+    "description": {{ product.description | strip_html | truncate: 5000 | json }},
+    "offers": {
+      "@type": "Offer",
+      "url": {{ shop.url | append: product.url | json }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "price": {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }},
+      "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+      "seller": {
+        "@type": "Organization",
+        "name": {{ shop.name | json }}
+      }
+    }
+  }
+  </script>
+
+  {%- comment -%}SKILL: programmatic-seo | FAQPage Schema via metafield custom.faq_items{%- endcomment -%}
+  {%- if product.metafields.custom.faq_items != blank -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {%- for faq in product.metafields.custom.faq_items.value -%}
+        {%- if faq.question != blank and faq.answer != blank -%}
+          {%- unless forloop.first %},{%- endunless -%}
+          {
+            "@type": "Question",
+            "name": {{ faq.question | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ faq.answer | json }}
+            }
+          }
+        {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+  {%- endif -%}
+
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">
-    {{- article | structured_data -}}
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ article.title | json }},
+    "url": {{ shop.url | append: article.url | json }},
+    "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+    "dateModified": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+    {%- if article.image -%}
+    "image": "https:{{ article.image | image_url: width: 1200 }}",
+    {%- endif -%}
+    {%- if article.excerpt != blank -%}
+    "description": {{ article.excerpt | strip_html | json }},
+    {%- endif -%}
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+      {%- if shop.brand.logo -%}
+      ,"logo": {
+        "@type": "ImageObject",
+        "url": "https:{{ shop.brand.logo | image_url: width: 200 }}"
+      }
+      {%- endif -%}
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ shop.url | append: article.url | json }}
+    }
+  }
+  </script>
+{%- elsif request.page_type == 'collection' -%}
+  {%- comment -%}SKILL: schema-markup | CollectionPage schema para coleções{%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": {{ collection.title | json }},
+    "url": {{ shop.url | append: collection.url | json }},
+    "description": {{ collection.description | strip_html | truncate: 500 | default: collection.title | json }},
+    "numberOfItems": {{ collection.products_count }}
+  }
   </script>
 {%- endif -%}
 
@@ -70,7 +188,7 @@
           }, {
             "@type": "ListItem",
             "position": 3,
-            "name": {{ blog.title | json }},
+            "name": {{ article.title | json }},
             "item": "{{ shop.url }}{{ article.url }}"
           }
       {%- elsif request.page_type == 'page' -%}

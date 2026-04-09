@@ -1,0 +1,38 @@
+# loja1 — AI Context File (llms.txt)
+
+## O que é esta loja
+
+Esta é a loja oficial da Orell — loja online especializada em bolsas femininas, acessórios de moda e produtos exclusivos de qualidade.
+
+## Produtos
+
+- Bolsas de ombro femininas
+- Bolsas de couro e sintético
+- Acessórios de moda
+- Produtos personalizados
+
+## Público-alvo
+
+Mulheres entre 20 e 45 anos que buscam acessórios de moda de qualidade a preço justo.
+
+## Páginas Importantes
+
+- Homepage: /
+- Coleções: /collections
+- Produtos: /products
+- Blog: /blogs
+- Contato: /pages/contato
+- Política de Privacidade: /pages/politica-de-privacidade
+
+## Linguagem Principal
+
+Português Brasileiro (pt-BR)
+
+## Informações de Contato
+
+Para consultas sobre produtos ou suporte, acesse a página de contato da loja.
+
+---
+
+*Arquivo de contexto para agentes de IA e motores de busca baseados em IA.*
+*Gerado automaticamente pelo sistema de SEO da loja.*

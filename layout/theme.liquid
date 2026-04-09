@@ -16,6 +16,12 @@
 
     <meta name='dmca-site-verification' content='cGFiWkZaWXUyNmJIT2J4WnZJVVpDQ29vYnBzSy90RWdhRklrVU9BWUVDUT01' />
     
+    {%- comment -%}SKILL: seo-audit | Meta robots com preview máximo — desbloqueia snippets ricos no Google{%- endcomment -%}
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    {%- comment -%}SKILL: ai-seo | Declarar suporte a content discovery por agentes de IA{%- endcomment -%}
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
@@ -27,7 +33,9 @@
       <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
     {%- endif -%}
 
-    {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
+    {%- comment -%}SKILL: performance | dns-prefetch e preconnect para domínios comuns — melhora TTFB e LCP{%- endcomment -%}
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="dns-prefetch" href="https://monorail-edge.shopifysvc.com">
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {%- unless settings.heading_font.system? -%}
@@ -42,6 +50,8 @@
     {%- render 'microdata-schema' -%}
     {%- render 'css-variables' -%}
     {%- render 'js-variables' -%}
+    {%- comment -%}SKILL: copywriting+seo-audit | Extras de SEO: keywords dinâmicas, hreflang, RSS{%- endcomment -%}
+    {%- render 'seo-head-extras' -%}
 
     {%- if request.page_type == 'gift_card' -%}
       <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>

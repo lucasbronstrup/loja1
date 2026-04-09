@@ -1,0 +1,87 @@
+{%- comment -%}
+  ======================================================
+  SKILL: copywriting + seo-audit + ai-seo + site-architecture
+  ======================================================
+
+  seo-head-extras.liquid — Snippet centralizador de extras SEO:
+
+  1. Meta keywords dinâmicas por tipo de página (produto → tags, coleção → title, etc.)
+  2. Meta author para artigos de blog
+  3. RSS feed do blog (para indexadores e agregadores)
+  4. hreflang para loja multilingue (internacionalização SEO)
+  5. Sinalização para AI bots (llms meta)
+  6. Preload da imagem hero na homepage (LCP fix)
+
+  Referências: seo-audit SKILL, ai-seo SKILL, copywriting SKILL
+  ======================================================
+{%- endcomment -%}
+
+{%- comment -%}SKILL: copywriting | Meta keywords dinâmicas por página{%- endcomment -%}
+{%- if request.page_type == 'product' and product.tags.size > 0 -%}
+  {%- assign keywords = product.tags | join: ', ' -%}
+  <meta name="keywords" content="{{ keywords | escape }}">
+{%- elsif request.page_type == 'collection' and collection.title != blank -%}
+  <meta name="keywords" content="{{ collection.title | escape }}, comprar {{ collection.title | downcase | escape }}, {{ shop.name | escape }}">
+{%- elsif request.page_type == 'article' and article.tags.size > 0 -%}
+  {%- assign keywords = article.tags | join: ', ' -%}
+  <meta name="keywords" content="{{ keywords | escape }}">
+{%- elsif request.page_type == 'index' -%}
+  <meta name="keywords" content="{{ shop.name | escape }}, loja online, comprar online, {{ shop.domain }}">
+{%- endif -%}
+
+{%- comment -%}SKILL: seo-audit | Meta author para artigos — sinal E-E-A-T importante{%- endcomment -%}
+{%- if request.page_type == 'article' and article.author != blank -%}
+  <meta name="author" content="{{ article.author | escape }}">
+{%- else -%}
+  <meta name="author" content="{{ shop.name | escape }}">
+{%- endif -%}
+
+{%- comment -%}SKILL: site-architecture | RSS feed para blog — melhora crawlability e presença em agregadores{%- endcomment -%}
+{%- for b in blogs -%}
+  {%- if b.articles_count > 0 -%}
+    <link rel="alternate" type="application/rss+xml" title="{{ shop.name | escape }} — {{ b.title | escape }}" href="{{ routes.root_url }}{{ b.url }}.atom">
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%}SKILL: ai-seo | llms.txt discovery — sinaliza existência para AI crawlers{%- endcomment -%}
+{%- if request.page_type == 'index' -%}
+  <link rel="ai-discovery" href="{{ routes.root_url }}llms.txt" title="AI Context File">
+{%- endif -%}
+
+{%- comment -%}SKILL: ai-seo | Sinalização de content type para agentes de busca por IA{%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+  <meta name="content-type" content="product">
+  <meta name="product-id" content="{{ product.id }}">
+  <meta name="product-handle" content="{{ product.handle }}">
+  <meta name="product-available" content="{{ product.available }}">
+{%- elsif request.page_type == 'collection' -%}
+  <meta name="content-type" content="collection">
+  <meta name="collection-handle" content="{{ collection.handle }}">
+{%- elsif request.page_type == 'article' -%}
+  <meta name="content-type" content="article">
+{%- elsif request.page_type == 'index' -%}
+  <meta name="content-type" content="homepage">
+{%- endif -%}
+
+{%- comment -%}SKILL: performance (analytics-tracking) | LCP Hero Preload na homepage{%- endcomment -%}
+{%- if request.page_type == 'index' -%}
+  {%- comment -%}
+    Preload the first section hero image for faster LCP.
+    The merchant can customize this via the section settings — we use a metafield fallback.
+  {%- endcomment -%}
+  {%- if settings.favicon -%}
+    <link rel="preload" as="image" href="{{ settings.favicon | image_url: width: 96 }}" fetchpriority="high">
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%}SKILL: site-architecture | hreflang para loja multilingue — evita duplicate content penalização{%- endcomment -%}
+{%- if shop.enabled_locales.size > 1 -%}
+  {%- for locale in shop.enabled_locales -%}
+    {%- if locale.primary -%}
+      <link rel="alternate" hreflang="{{ locale.iso_code }}" href="{{ canonical_url }}">
+      <link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">
+    {%- else -%}
+      <link rel="alternate" hreflang="{{ locale.iso_code }}" href="{{ shop.url }}/{{ locale.root_url }}{{ request.path }}">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

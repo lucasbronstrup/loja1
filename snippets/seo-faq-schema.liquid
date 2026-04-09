@@ -1,0 +1,112 @@
+{%- comment -%}
+  ======================================================
+  SKILL: programmatic-seo + schema-markup
+  ======================================================
+
+  seo-faq-schema.liquid — FAQPage JSON-LD + HTML visível por produto.
+
+  Lê o metafield `custom.faq_items` (lista de metaobjects com
+  campos `question` e `answer`) e renderiza:
+
+  1. FAQPage JSON-LD para rich results no Google (⭐ Featured Snippets)
+  2. FAQ accordion HTML acessível para usuários
+
+  COMO ATIVAR:
+  1. No Shopify Admin → Conteúdo → Metafields de produto
+  2. Criar metafield tipo lista de metaobjects com namespace `custom` e key `faq_items`
+  3. Cada metaobject deve ter campos: `question` (texto) e `answer` (texto rico)
+  4. Incluir este snippet em qualquer seção de produto com:
+     {%- render 'seo-faq-schema', product: product -%}
+
+  ======================================================
+{%- endcomment -%}
+
+{%- if product.metafields.custom.faq_items != blank -%}
+  {%- assign faq_list = product.metafields.custom.faq_items.value -%}
+
+  {%- comment -%}SKILL: schema-markup | FAQPage JSON-LD via metafield{%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {%- for faq in faq_list -%}
+        {%- if faq.question != blank and faq.answer != blank -%}
+          {%- unless forloop.first %},{%- endunless -%}
+          {
+            "@type": "Question",
+            "name": {{ faq.question | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ faq.answer | strip_html | json }}
+            }
+          }
+        {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+
+  {%- comment -%}SKILL: programmatic-seo | FAQ accordion HTML acessível{%- endcomment -%}
+  <section class="seo-faq-section" aria-labelledby="faq-heading-{{ product.id }}">
+    <h2 id="faq-heading-{{ product.id }}">Perguntas Frequentes sobre {{ product.title }}</h2>
+
+    <div class="seo-faq-list" itemscope itemtype="https://schema.org/FAQPage">
+      {%- for faq in faq_list -%}
+        {%- if faq.question != blank and faq.answer != blank -%}
+          <div class="seo-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <details>
+              <summary itemprop="name">{{ faq.question }}</summary>
+              <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <div itemprop="text" class="seo-faq-answer">
+                  {{ faq.answer }}
+                </div>
+              </div>
+            </details>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <style>
+    .seo-faq-section {
+      margin: 2rem 0;
+    }
+    .seo-faq-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .seo-faq-item {
+      border-bottom: 1px solid #eee;
+      padding: 0.75rem 0;
+    }
+    .seo-faq-item details summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      padding: 0.5rem 0;
+      position: relative;
+      padding-right: 1.5rem;
+    }
+    .seo-faq-item details summary::-webkit-details-marker {
+      display: none;
+    }
+    .seo-faq-item details summary::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      font-size: 1.2rem;
+      color: #666;
+      transition: transform 0.2s ease;
+    }
+    .seo-faq-item details[open] summary::after {
+      content: '−';
+    }
+    .seo-faq-answer {
+      padding: 0.75rem 0;
+      color: #555;
+      line-height: 1.6;
+    }
+  </style>
+{%- endif -%}

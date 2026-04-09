@@ -1,0 +1,215 @@
+{%- comment -%}
+  ======================================================
+  SKILL: site-architecture + schema-markup
+  ======================================================
+
+  seo-breadcrumb.liquid — Breadcrumb SEO dupla camada:
+
+  Renderiza breadcrumbs com:
+  1. HTML semântico visível (nav + ol + microdata inline)
+  2. JSON-LD sincrônico com estrutura visual (BreadcrumbList)
+
+  Vantagens vs. snippet original:
+  - Breadcrumb visível ao usuário (melhora UX e sinal de arquitetura)
+  - Microdata inline + JSON-LD para redundância de sinalização
+  - Suporte a coleção > produto > variante
+  - Suporte a blog > artigo
+
+  Uso: {%- render 'seo-breadcrumb' -%}
+  ======================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign breadcrumb_items = '' | split: ''
+  assign home_item = shop.url
+-%}
+
+{%- comment -%}--- Monta array de itens para o JSON-LD ---{%- endcomment -%}
+{%- capture breadcrumb_json -%}
+[
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": {{ 'general.home' | t | json }},
+    "item": {{ shop.url | json }}
+  }
+
+  {%- if request.page_type == 'product' -%}
+    {%- if collection -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ collection.title | json }},
+        "item": {{ shop.url | append: collection.url | json }}
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": {{ product.title | json }},
+        "item": {{ shop.url | append: product.url | json }}
+      }
+    {%- else -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ product.title | json }},
+        "item": {{ shop.url | append: product.url | json }}
+      }
+    {%- endif -%}
+
+  {%- elsif request.page_type == 'collection' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ collection.title | json }},
+      "item": {{ shop.url | append: collection.url | json }}
+    }
+
+  {%- elsif request.page_type == 'article' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": {{ shop.url | append: blog.url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": {{ shop.url | append: article.url | json }}
+    }
+
+  {%- elsif request.page_type == 'blog' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": {{ shop.url | append: blog.url | json }}
+    }
+
+  {%- elsif request.page_type == 'page' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ page.title | json }},
+      "item": {{ shop.url | append: page.url | json }}
+    }
+  {%- endif -%}
+]
+{%- endcapture -%}
+
+{%- comment -%}SKILL: schema-markup | BreadcrumbList JSON-LD{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": {{ breadcrumb_json }}
+}
+</script>
+
+{%- comment -%}SKILL: site-architecture | Breadcrumb HTML visível com microdata inline (dupla sinalização){%- endcomment -%}
+{%- unless request.page_type == 'index' or request.page_type == 'password' -%}
+<nav aria-label="Breadcrumb" class="seo-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="{{ shop.url }}">
+        <span itemprop="name">{{ 'general.home' | t }}</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+
+    {%- if request.page_type == 'product' -%}
+      {%- if collection -%}
+        <li aria-hidden="true"> › </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="{{ collection.url }}">
+            <span itemprop="name">{{ collection.title }}</span>
+          </a>
+          <meta itemprop="position" content="2">
+        </li>
+        <li aria-hidden="true"> › </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{{ product.title }}</span>
+          <meta itemprop="item" content="{{ shop.url }}{{ product.url }}">
+          <meta itemprop="position" content="3">
+        </li>
+      {%- else -%}
+        <li aria-hidden="true"> › </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{{ product.title }}</span>
+          <meta itemprop="item" content="{{ shop.url }}{{ product.url }}">
+          <meta itemprop="position" content="2">
+        </li>
+      {%- endif -%}
+
+    {%- elsif request.page_type == 'collection' -%}
+      <li aria-hidden="true"> › </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ collection.title }}</span>
+        <meta itemprop="item" content="{{ shop.url }}{{ collection.url }}">
+        <meta itemprop="position" content="2">
+      </li>
+
+    {%- elsif request.page_type == 'article' -%}
+      <li aria-hidden="true"> › </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="{{ blog.url }}">
+          <span itemprop="name">{{ blog.title }}</span>
+        </a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li aria-hidden="true"> › </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ article.title }}</span>
+        <meta itemprop="item" content="{{ shop.url }}{{ article.url }}">
+        <meta itemprop="position" content="3">
+      </li>
+
+    {%- elsif request.page_type == 'blog' -%}
+      <li aria-hidden="true"> › </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ blog.title }}</span>
+        <meta itemprop="item" content="{{ shop.url }}{{ blog.url }}">
+        <meta itemprop="position" content="2">
+      </li>
+
+    {%- elsif request.page_type == 'page' -%}
+      <li aria-hidden="true"> › </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ page.title }}</span>
+        <meta itemprop="item" content="{{ shop.url }}{{ page.url }}">
+        <meta itemprop="position" content="2">
+      </li>
+    {%- endif -%}
+  </ol>
+</nav>
+{%- endunless -%}
+
+<style>
+  .seo-breadcrumb {
+    font-size: 0.8em;
+    color: #666;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+  }
+  .seo-breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.1rem;
+  }
+  .seo-breadcrumb li a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .seo-breadcrumb li a:hover {
+    text-decoration: underline;
+  }
+  .seo-breadcrumb li:last-child span[itemprop="name"] {
+    font-weight: 600;
+    color: #333;
+  }
+</style>
