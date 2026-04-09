@@ -1,0 +1,223 @@
+{%- comment -%}
+  ======================================================
+  TRACKING CENTRAL: GTM + GA4 + Google Ads + Meta Ads
+  ======================================================
+
+  ARQUITETURA (inspirada na Fase 1 do agentic-code-optimization):
+  EnvironmentAgent → 1 container GTM serve todos os pixels
+  BehaviorAgent   → Data Layer de e-commerce pré-populado no Liquid
+  ComponentAgent  → Snippets modulares por plataforma
+  
+  COMO FUNCIONA:
+  1. Este snippet define o dataLayer com dados do contexto atual (Liquid)
+  2. O GTM Container carrega e distribui para GA4, Google Ads, Meta Pixel
+  3. Todos os eventos são disparados via dataLayer.push() — sem código de pixel direto
+  4. Isso mantém TUDO centralizável no GTM sem tocar código do tema
+
+  CONFIGURAÇÕES NECESSÁRIAS NO SHOPIFY ADMIN:
+  - Lore → Preferências → Google Analytics: DESATIVAR o nativo
+  - Em vez disso use APENAS este snippet + GTM container
+  
+  CONFIGURAÇÕES NO GTM (após publicar o tema):
+  1. Criar Tag: GA4 Configuration com seu Measurement ID
+  2. Criar Tag: Google Ads Conversion com seu Conversion ID
+  3. Criar Tag: Meta Pixel Base com seu Pixel ID
+  4. Criar Triggers para cada evento do dataLayer
+  ======================================================
+{%- endcomment -%}
+
+{%- comment -%}
+  FASE 1 (agentic-code-optimization — Environment Summary Agent):
+  Mapear o ambiente atual: tipo de página, produto, coleção, usuário
+{%- endcomment -%}
+
+{%- comment -%}Capturar dados do produto se estiver em página de produto{%- endcomment -%}
+{%- liquid
+  assign tracking_page_type = request.page_type
+  assign tracking_currency = cart.currency.iso_code | default: 'BRL'
+  assign tracking_shop_name = shop.name
+%}
+
+{%- if request.page_type == 'product' -%}
+  {%- liquid
+    assign tracking_product = product
+    assign tracking_variant = product.selected_or_first_available_variant
+    assign tracking_product_price = tracking_variant.price | divided_by: 100.0
+    assign tracking_product_compare_price = tracking_variant.compare_at_price | divided_by: 100.0
+    assign tracking_product_brand = product.vendor | default: shop.name
+    assign tracking_product_category = product.type | default: ''
+    assign tracking_product_in_stock = tracking_variant.available
+  -%}
+{%- endif -%}
+
+{%- if request.page_type == 'collection' -%}
+  {%- assign tracking_collection = collection -%}
+{%- endif -%}
+
+{%- if request.page_type == 'article' -%}
+  {%- assign tracking_article = article -%}
+{%- endif -%}
+
+{%- comment -%}Dados do usuário (sem PII — apenas flags){%- endcomment -%}
+{%- assign tracking_customer_logged_in = false -%}
+{%- if customer -%}
+  {%- assign tracking_customer_logged_in = true -%}
+  {%- assign tracking_customer_order_count = customer.orders_count -%}
+  {%- assign tracking_customer_total_spent = customer.total_spent | divided_by: 100.0 -%}
+{%- endif -%}
+
+{%- comment -%}
+  ======================================================
+  PASSO 1: dataLayer init — antes do GTM (obrigatório)
+  ======================================================
+  O dataLayer DEVE existir antes do GTM carregar.
+  Populamos com todos os dados de contexto Liquid aqui.
+{%- endcomment -%}
+<script>
+window.dataLayer = window.dataLayer || [];
+
+// Dados persistentes de contexto (Environment Agent)
+window.dataLayer.push({
+  'event': 'page_context',
+  'page': {
+    'type': {{ tracking_page_type | json }},
+    'url': {{ canonical_url | json }},
+    'title': {{ page_title | json }},
+    'locale': {{ request.locale.iso_code | json }},
+    'currency': {{ tracking_currency | json }},
+    'environment': {{ shop.permanent_domain | json }}
+  },
+  'shop': {
+    'name': {{ tracking_shop_name | json }},
+    'currency': {{ tracking_currency | json }}
+  },
+  'user': {
+    'logged_in': {{ tracking_customer_logged_in | json }},
+    {%- if customer -%}
+    'order_count': {{ tracking_customer_order_count | default: 0 | json }},
+    'total_spent': {{ tracking_customer_total_spent | default: 0 | json }},
+    'tags': {{ customer.tags | json }}
+    {%- else -%}
+    'order_count': 0,
+    'total_spent': 0,
+    'tags': []
+    {%- endif -%}
+  }
+});
+
+{%- comment -%}Evento: view_item (página de produto){%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+window.dataLayer.push({
+  'event': 'view_item',
+  'ecommerce': {
+    'currency': {{ tracking_currency | json }},
+    'value': {{ tracking_product_price | json }},
+    'items': [{
+      'item_id': {{ tracking_variant.sku | default: tracking_product.id | json }},
+      'item_name': {{ tracking_product.title | json }},
+      'item_brand': {{ tracking_product_brand | json }},
+      'item_category': {{ tracking_product_category | json }},
+      'item_variant': {{ tracking_variant.title | json }},
+      'price': {{ tracking_product_price | json }},
+      'quantity': 1,
+      'availability': {{ tracking_product_in_stock | json }},
+      'shopify_product_id': {{ tracking_product.id | json }},
+      'shopify_variant_id': {{ tracking_variant.id | json }}
+    }]
+  }
+});
+
+// Meta Pixel: ViewContent (via dataLayer → GTM → Meta)
+window.dataLayer.push({
+  'event': 'meta_ViewContent',
+  'meta_ecommerce': {
+    'content_ids': [{{ tracking_product.id | json }}],
+    'content_name': {{ tracking_product.title | json }},
+    'content_type': 'product',
+    'value': {{ tracking_product_price | json }},
+    'currency': {{ tracking_currency | json }}
+  }
+});
+{%- endif -%}
+
+{%- comment -%}Evento: view_item_list (coleção){%- endcomment -%}
+{%- if request.page_type == 'collection' -%}
+window.dataLayer.push({
+  'event': 'view_item_list',
+  'ecommerce': {
+    'item_list_id': {{ tracking_collection.handle | json }},
+    'item_list_name': {{ tracking_collection.title | json }},
+    'items': [
+      {%- for product in collection.products limit: 12 -%}
+      {
+        'item_id': {{ product.selected_or_first_available_variant.sku | default: product.id | json }},
+        'item_name': {{ product.title | json }},
+        'item_brand': {{ product.vendor | json }},
+        'item_category': {{ product.type | json }},
+        'price': {{ product.price | divided_by: 100.0 | json }},
+        'index': {{ forloop.index | json }},
+        'item_list_name': {{ tracking_collection.title | json }},
+        'shopify_product_id': {{ product.id | json }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }
+});
+{%- endif -%}
+
+{%- comment -%}Evento: search (busca){%- endcomment -%}
+{%- if request.page_type == 'search' and search.performed -%}
+window.dataLayer.push({
+  'event': 'search',
+  'search_term': {{ search.terms | json }},
+  'search_results_count': {{ search.results_count | json }}
+});
+{%- endif -%}
+
+{%- comment -%}Evento: blog_view (artigo){%- endcomment -%}
+{%- if request.page_type == 'article' -%}
+window.dataLayer.push({
+  'event': 'blog_view',
+  'article': {
+    'title': {{ tracking_article.title | json }},
+    'author': {{ tracking_article.author | json }},
+    'tags': {{ tracking_article.tags | json }},
+    'published_at': {{ tracking_article.published_at | date: '%Y-%m-%d' | json }}
+  }
+});
+{%- endif -%}
+</script>
+
+{%- comment -%}
+  ======================================================
+  PASSO 2: Google Tag Manager — Container Principal
+  ======================================================
+  SUBSTITUA GTM-XXXXXXX pelo seu ID real do GTM.
+  O GTM vai gerenciar: GA4, Google Ads, Meta Pixel, etc.
+  
+  Se você ainda não tem GTM:
+  1. Acesse tagmanager.google.com
+  2. Crie uma conta e container para o seu domínio
+  3. Copie o ID (formato GTM-XXXXXXX)
+  4. Substitua abaixo e publique o tema
+  
+  No GTM, crie:
+  - Tag GA4: usando evento trigger "All Pages" + seus events
+  - Tag Google Ads: trigger em "purchase" event
+  - Tag Meta Pixel: trigger em "meta_*" events do dataLayer
+{%- endcomment -%}
+
+{%- assign gtm_id = settings.gtm_container_id | default: '' -%}
+
+{%- if gtm_id != blank -%}
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer',{{ gtm_id | json }});</script>
+<!-- End Google Tag Manager -->
+{%- else -%}
+<!-- GTM: Configure seu GTM ID em Tema > Configurações > Tracking -->
+<!-- Adicione o campo settings.gtm_container_id no settings_schema.json -->
+{%- endif -%}

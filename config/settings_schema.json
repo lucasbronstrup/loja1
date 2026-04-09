@@ -855,5 +855,49 @@
         "info": "t:theme_settings.favicon.image_info"
       }
     ]
+  },
+  {
+    "name": "Rastreamento e Analytics",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Google Tag Manager"
+      },
+      {
+        "type": "paragraph",
+        "content": "O GTM centraliza GA4, Google Ads e Meta Pixel em um único container. Crie sua conta em tagmanager.google.com e cole o ID abaixo (formato: GTM-XXXXXXX)."
+      },
+      {
+        "type": "text",
+        "id": "gtm_container_id",
+        "label": "GTM Container ID",
+        "placeholder": "GTM-XXXXXXX",
+        "info": "Se preenchido, o tema injeta o GTM automaticamente. Desative o Google Analytics nativo do Shopify."
+      },
+      {
+        "type": "header",
+        "content": "Google Analytics 4 (via GTM)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Configure o GA4 no GTM usando seu Measurement ID (G-XXXXXXXXXX). O tema já popula os eventos de e-commerce no dataLayer automaticamente."
+      },
+      {
+        "type": "header",
+        "content": "Meta Ads (Facebook Pixel)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Configure o Meta Pixel no GTM usando o evento 'meta_ViewContent', 'meta_AddToCart', etc. O tema já envia esses eventos via dataLayer."
+      },
+      {
+        "type": "header",
+        "content": "Eventos de Conversão (Checkout)"
+      },
+      {
+        "type": "paragraph",
+        "content": "O evento 'purchase' deve ser configurado no campo 'Scripts Adicionais' do Shopify (Configurações > Checkout > Scripts Adicionais). Consulte o arquivo snippets/tracking-purchase.liquid para o código completo."
+      }
+    ]
   }
 ]

@@ -37,12 +37,16 @@
     {%- endif -%}
 
     {%- comment -%}
-      PERF CORREÇÃO CRÍTICA: Delay de scripts de terceiros.
-      O MutationObserver precisa estar ativo ANTES do content_for_header
-      para interceptar os scripts de Facebook, Clarity, MercadoPago.
-      Identificados no PageSpeed: 98KB fbevents, 26KB clarity, 171ms reflow mercadopago.
+      PERF: Delay de terceiros (MutationObserver ativo ANTES do content_for_header)
     {%- endcomment -%}
     {%- render 'performance-delay-third-party' -%}
+
+    {%- comment -%}
+      TRACKING CENTRAL: dataLayer init ANTES do GTM e do content_for_header.
+      O dataLayer precisa existir antes que qualquer script de terceiro carregue.
+      Populado com dados de contexto Liquid (produto, coleção, usuário, carrinho).
+    {%- endcomment -%}
+    {%- render 'tracking-gtm' -%}
 
     {{ content_for_header }}
 
@@ -183,5 +187,7 @@
       e também o passive event listener polyfill (substitui Timber fastclick).
     {%- endcomment -%}
     {%- render 'performance-lazy-sections' -%}
+    {%- comment -%}TRACKING: Eventos de carrinho (add_to_cart, begin_checkout, etc.){%- endcomment -%}
+    {%- render 'tracking-events' -%}
   </body>
 </html>
