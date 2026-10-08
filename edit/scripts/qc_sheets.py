@@ -51,10 +51,14 @@ def main():
         still = [i for i in range(1, len(sh) - 1) if mo[i] < 0.05 and mo[i + 1] < 0.05]
         if len(still) < 3:
             continue
-        med = np.median(sh[still])
+        # compara com quadros parados vizinhos (±12): conteúdo parecido, só o desfoque mudaria a nitidez
         for i in still:
-            if sh[i] < 0.7 * med:
-                flags.append((sid, i, round(sh[i], 1), round(med, 1)))
+            nb = [j for j in still if abs(j - i) <= 12 and j != i]
+            if len(nb) < 3:
+                continue
+            med = float(np.median(sh[nb]))
+            if sh[i] < 0.8 * med:
+                flags.append((sid, i, round(float(sh[i]), 1), round(med, 1)))
     print("quadros parados e desfocados:", flags if flags else "nenhum")
     (WORK / "qc" / "parados_desfocados.json").write_text(json.dumps(flags))
 

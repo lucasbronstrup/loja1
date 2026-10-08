@@ -25,24 +25,7 @@
  },
  "pivo": {
   "min_font_px": 36,
-  "issues": {
-   "texto sobre rosto | Graziela": {
-    "n": 1,
-    "t": [
-     0.5,
-     0.5
-    ],
-    "ex": "IMG_20261007_WA0086"
-   },
-   "texto sobre rosto | Eduarda.": {
-    "n": 1,
-    "t": [
-     2.333,
-     2.333
-    ],
-    "ex": "IMG_20261007_WA0086"
-   }
-  }
+  "issues": {}
  },
  "a2_destaque": {
   "min_font_px": 36,
@@ -54,16 +37,7 @@
  },
  "a2_mosaico": {
   "min_font_px": 52,
-  "issues": {
-   "texto sobre rosto | sempre.": {
-    "n": 1,
-    "t": [
-     0.333,
-     0.333
-    ],
-    "ex": "IMG_20261007_WA0086"
-   }
-  }
+  "issues": {}
  },
  "a2_nome": {
   "min_font_px": 36,

@@ -46,7 +46,8 @@ def main():
         "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709", "-color_range", "tv",
         "-r", "60", "-fps_mode", "cfr", "-frames:v", "2161",
         "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-ac", "2",
-        "-movflags", "+faststart", str(out),
+        # escala de tempo 48 000: as listas de edição de vídeo e áudio terminam exatamente em END (1 728 800 amostras)
+        "-movie_timescale", "48000", "-movflags", "+faststart", str(out),
     ])
     print("ok", out)
 

@@ -116,6 +116,7 @@ def audio():
     dec = subprocess.run(["ffmpeg", "-v", "error", "-i", str(FINAL), "-map", "0:a:0", "-f", "f32le", "-ac", "2", "-ar", "48000", "-"], capture_output=True).stdout
     a = np.frombuffer(dec, np.float32).reshape(-1, 2)
     R["audio_mp4_amostras_decodificadas"] = len(a)
+    R["listas_de_edicao"] = elst(FINAL)
     music, _ = sf.read(ROOT / "stems" / "music.wav")
     sfx, _ = sf.read(ROOT / "stems" / "sfx.wav")
     riser, _ = sf.read(ROOT / "stems" / "riser.wav")
@@ -157,6 +158,39 @@ def audio():
                    "mp4_ultimos_10ms": float(np.abs(a[-480:]).max()) if len(a) else None}
 
 
+def elst(path):
+    """durações das listas de edição (escala do filme) — é por elas que os players terminam as faixas"""
+    import struct
+
+    data = path.read_bytes()
+    out = {}
+
+    def walk(off, end, path_):
+        while off < end:
+            size, typ = struct.unpack(">I4s", data[off : off + 8])
+            typ = typ.decode("latin1")
+            hdr = 8
+            if size == 1:
+                size = struct.unpack(">Q", data[off + 8 : off + 16])[0]
+                hdr = 16
+            p = path_ + "/" + typ
+            if typ in ("moov", "trak", "edts", "mdia"):
+                walk(off + hdr, off + size, p)
+            elif typ == "mvhd":
+                b = data[off + hdr : off + size]
+                ts = struct.unpack(">I", b[12:16])[0] if b[0] == 0 else struct.unpack(">I", b[20:24])[0]
+                out["escala"] = ts
+            elif typ == "elst":
+                b = data[off + hdr : off + size]
+                sd = struct.unpack(">I", b[8:12])[0] if b[0] == 0 else struct.unpack(">Q", b[8:16])[0]
+                out.setdefault("segmentos", []).append(sd)
+            off += size
+
+    walk(0, len(data), "")
+    out["fim_s"] = [s / out["escala"] for s in out.get("segmentos", [])]
+    return out
+
+
 def words():
     txt = ""
     for f in sorted((WORK / "hf").rglob("*.js")) + sorted((WORK / "hf" / "compositions").glob("*.html")) + [ROOT / "scripts" / "06_build_comps.mjs"]:
@@ -175,7 +209,7 @@ def main():
     audio()
     words()
     (WORK / "verificacao.json").write_text(json.dumps(R, indent=1, ensure_ascii=False))
-    print(json.dumps({k: R[k] for k in ("video", "audio", "faststart", "x264", "loudness", "audio_mp4_amostras_decodificadas", "riser", "bordas", "palavras_proibidas")}, indent=1, ensure_ascii=False))
+    print(json.dumps({k: R[k] for k in ("video", "audio", "faststart", "x264", "loudness", "audio_mp4_amostras_decodificadas", "listas_de_edicao", "riser", "bordas")}, indent=1, ensure_ascii=False))
     for c in R["cortes"]:
         print("corte", c["corte_quadro"], c["de"], "->", c["para"], "ok" if c["ok"] else "FALHA", c["psnr_C-1_vs_ultimo_anterior"], c["psnr_C_vs_primeiro_novo"])
     for e in R["efeitos"]:

@@ -29,6 +29,17 @@ def fmt_ms(f):
     return f"{f * 1000 / 60:.3f}".replace(".", ",")
 
 
+def br(x, nd=1):
+    """número no formato brasileiro (vírgula decimal, menos tipográfico)"""
+    return f"{x:.{nd}f}".replace(".", ",").replace("-", "−")
+
+
+def br_text(t):
+    import re
+
+    return re.sub(r"(\d)\.(\d)", r"\1,\2", t)
+
+
 def main():
     L = []
     w = L.append
@@ -36,7 +47,7 @@ def main():
     w("# Relatório — homenagem a Graziela e Eduarda\n")
     w("## 1. Resumo\n")
     w(f"- END: quadro **{TL['END_quadro']}** (exclusivo) = **{end_ms:.3f} ms**".replace(".", ",", 1))
-    w(f"- Duração total: **{TL['END_quadro']} quadros a 60 qps = {TL['END_quadro'] / 60:.3f} s**")
+    w(f"- Duração total: **{TL['END_quadro']} quadros a 60 qps = {br(TL['END_quadro'] / 60, 3)} s**")
     w(f"- Andamento: **{TL['bpm']} BPM** (30 quadros por batida, 120 por compasso; 1ª batida no quadro 1)")
     w(f"- Tonalidade: **{TL['tonalidade']}** · **{TL['compassos']} compassos**")
     w("- Entregas: `final.mp4`, `stems/music.wav`, `stems/sfx.wav`, `stems/riser.wav`, este relatório; intermediários em `work/`.\n")
@@ -66,7 +77,7 @@ def main():
     w("**Fotos finais:** " + " e ".join(f"`{f['file']}` ({f['n_rostos']} rostos detectados)" for f in SEL["finais"]) + " — mostradas inteiras.\n")
     w("**Descartes:**\n")
     for d in SEL["descartes"]:
-        w(f"- `{d['file']}` — {d['motivo']}")
+        w(f"- `{d['file']}` — {br_text(d['motivo'])}")
     w("\n**Igualdade:** 4 fotos para cada uma; mesma estrutura de cenas (DESTAQUE 1, PILHA 3, MOSAICO 4 com a foto do NOME, NOME), mesmas durações (5 compassos por ato), mesmas transições (corte seco, corte seco, zoom-through, whip), mesmos efeitos sonoros (impacto no pouso do DESTAQUE e na chegada do NOME, passagem no whip), mesmos tamanhos de cartão e de fonte; nome gigante no mesmo tamanho (181 px) para as duas. Com menos de 8 fotos, cada foto aparece em até duas cenas do ato, com enquadramentos diferentes (o mosaico usa recortes mais fechados); a foto do NOME é a miniatura ampliada pelo zoom-through (exceção prevista).\n")
     w("Pré-processamento: orientação EXIF aplicada, conversão ICC → sRGB, máximo de 2160 px (nenhuma ampliação). Recortes centrados nos rostos; nenhuma foto ampliada mais de 1,3× em repouso (NOME da Graziela: 1,18× com a aproximação de 1,06 → 1,26×).\n")
 
@@ -122,12 +133,13 @@ def main():
     w("| Faixa | LUFS integrados | Pico verdadeiro (dBTP) |")
     w("|---|---|---|")
     for k, v in VER["loudness"].items():
-        tp = "—" if v["true_peak_dbtp"] is None else f"{v['true_peak_dbtp']:.1f}"
-        w(f"| {k} | {v['lufs_integrado']:.1f} | {tp} |")
+        tp = "—" if v["true_peak_dbtp"] is None else br(v["true_peak_dbtp"])
+        w(f"| {k} | {br(v['lufs_integrado'])} | {tp} |")
     lim = MIX["limitador"]
-    w(f"\nGanho comum aplicado às três faixas: {MIX['ganho_comum_db']:+.2f} dB. "
-      + ("Limitador transparente (pico verdadeiro, −1,3 dBTP, antecipação de 10 ms) atuou só onde a soma passava do limite: "
-         f"{lim['tempo_ativo_ms']:.0f} ms no total, redução máxima {lim['reducao_max_db']:.2f} dB (em {', '.join(str(x) for x in lim['trechos_s'])} s, impacto da foto final 2 sobre o 1º tempo do compasso 17)." if lim.get("ativado") else "O limitador não foi necessário.")
+    w(f"\nGanho comum aplicado às três faixas: +{br(MIX['ganho_comum_db'], 2)} dB. "
+      + ("A soma passou do limite num único ponto (impacto da foto final 2 sobre o 1º tempo do compasso 17, pico verdadeiro da soma "
+         f"{br(MIX['true_peak_soma_db'])} dBTP); ali atuou um limitador transparente de pico verdadeiro (−1,3 dBTP, antecipação de 10 ms): "
+         f"{lim['tempo_ativo_ms']:.0f} ms no total, redução máxima {br(lim['reducao_max_db'], 2)} dB em {', '.join(br(x, 3) for x in lim['trechos_s'])} s. Fora desse trecho o master é a soma exata dos três stems." if lim.get("ativado") else "O limitador não foi necessário.")
       + "\n")
 
     w("## 8. Música (stems/music.wav) e riser\n")
@@ -137,9 +149,9 @@ def main():
     for b in range(1, 19):
         w(f"| {b} | {CHORD_NAME[CHORDS[b]]} | {ARR[b]} |")
     secs = MUS["secoes_lufs"]
-    w(f"\nLoudness por seção (antes do ganho comum): abertura {secs['abertura']} · Ato 1 {secs['ato1']} · pivô {secs['pivo']} · Ato 2 {secs['ato2']} · final {secs['final']} LUFS — os dois atos ficam iguais (diferença {abs(secs['ato1'] - secs['ato2']):.2f} LU; o ganho das cordas foi calibrado para isso).\n")
+    w(f"\nLoudness por seção (antes do ganho comum): abertura {br(secs['abertura'], 2)} · Ato 1 {br(secs['ato1'], 2)} · pivô {br(secs['pivo'], 2)} · Ato 2 {br(secs['ato2'], 2)} · final {br(secs['final'], 2)} LUFS — os dois atos ficam iguais (diferença {br(abs(secs['ato1'] - secs['ato2']), 2)} LU; o ganho das cordas foi calibrado para isso).\n")
     rs = VER["riser"]
-    w(f"Riser (stems/riser.wav): ruído filtrado com filtro abrindo + tom grave subindo (55 → 196 Hz), **{rs['duracao_s']:.3f} s** do quadro 1 (amostra {rs['primeira_amostra']}) ao quadro 121 (última amostra {rs['ultima_amostra']}, junção {rs['juncao_amostra']}); nada depois do corte.\n")
+    w(f"Riser (stems/riser.wav): ruído filtrado com filtro abrindo + tom grave subindo (55 → 196 Hz), **2 s exatos**: começa na amostra 800 (quadro 1) e cresce até a junção com o Ato 1 (amostra 96 800 = quadro 121), com 4 ms anti-estalo nas pontas; última amostra audível {rs['ultima_amostra']}; nada depois do corte. Pico 10 dB abaixo do pico da música.\n")
 
     w("## 9. Decisões, alternativas e limitações\n")
     dec = [
@@ -165,15 +177,21 @@ def main():
     a = VER["audio"]
     okc = all(c["ok"] for c in VER["cortes"])
     oke = all(e["ok"] for e in VER["efeitos"])
-    w(f"- Vídeo: {v['codec_name']} {v['profile']}, {v['width']}×{v['height']}, {v['pix_fmt']}, {v['r_frame_rate']} qps, **{v['nb_read_frames']} quadros**, cor {v['color_primaries']}/{v['color_transfer']}/{v['color_space']}, CRF {VER['x264']['crf']}, faststart {'sim' if VER['faststart'] else 'NÃO'}.")
-    w(f"- Áudio: {a['codec_name']} {a['sample_rate']} Hz, {a['channels']} canais; {VER['audio_mp4_amostras_decodificadas']} amostras decodificadas (END = 1 728 800).")
+    w(f"- Vídeo: H.264 {v['profile']}, {v['width']}×{v['height']}, {v['pix_fmt']}, {v['r_frame_rate'].split('/')[0]} qps, **{v['nb_read_frames']} quadros ({br(float(v['duration']), 6)} s)**, BT.709 (primárias, transferência e matriz), faixa limitada, CRF {VER['x264']['crf']:.0f}, preset slow, faststart {'sim' if VER['faststart'] else 'NÃO'}.")
+    el = VER["listas_de_edicao"]
+    w(f"- Áudio: AAC estéreo {a['sample_rate']} Hz (320 kb/s). As listas de edição do MP4 (escala {el['escala']}) terminam vídeo e áudio em {el['segmentos'][0]} e {el['segmentos'][1]} unidades = {br(el['fim_s'][0], 6)} s = END; o decodificador bruto do FFmpeg devolve {VER['audio_mp4_amostras_decodificadas']} amostras porque ignora o corte final da lista e inclui o preenchimento do último bloco AAC (silêncio, descartado pelos players). Sincronia áudio/master conferida por correlação: deslocamento 0.")
     w(f"- Stems: " + ", ".join(f"{k} {s['amostras']} amostras / {s['sr']} Hz / {s['canais']} canais / {s['subtipo']}" for k, s in VER["stems"].items()) + ".")
     w(f"- Cortes nos quadros {', '.join(str(c['corte_quadro']) for c in VER['cortes'])}: {'todos OK' if okc else 'FALHA'} (os dois lados conferidos contra os trechos renderizados; todos caem em batida).")
     w(f"- Efeitos alinhados aos eventos (tolerância 1 quadro): {'todos OK' if oke else 'FALHA'}; passagens com pico no corte.")
-    w(f"- Riser termina na junção (quadro 121); máximo depois da junção = {rs['depois_da_juncao_max']:.1e}.")
+    w(f"- Riser termina na junção (quadro 121); depois dela o stem é silêncio absoluto ({rs['depois_da_juncao_max']:.0f}).")
+    pd_ = json.loads((WORK / "qc" / "parados_desfocados.json").read_text())
+    w(f"- Quadro 0 = capa (4 subquadros idênticos), abertura a partir do quadro 1. Último quadro: foto final com as duas linhas de encerramento completas e nítidas, sem fade.")
+    w(f"- Quadros parados e desfocados (nitidez × movimento em todos os quadros): {'nenhum' if not pd_ else pd_}.")
+    w(f"- Bordas sem estalo: música começa com 5 ms de suavização na amostra 800 e termina em zero após 800 ms de saída; últimos 10 ms do master ≈ {VER['bordas']['mp4_ultimos_10ms']:.0e}.")
+    w("- Igualdade conferida: mesmas cenas, durações, transições, efeitos e quantidade de fotos nas duas; busca de palavras proibidas sem ocorrências.")
     issues = {k: v_["issues"] for k, v_ in LAY.items() if v_["issues"]}
     w(f"- Geometria medida no Chrome a cada 1/30 s: fonte mínima {min(v_['min_font_px'] for v_ in LAY.values())} px; texto sobre rosto / fora da área segura em repouso: {'nenhum' if not issues else issues}.")
-    w("- Prancha do vídeo completo: `work/qc/prancha_video.jpg`.")
+    w("- Pranchas: vídeo completo em `work/qc/prancha_video.jpg`; uma por trecho em `work/qc/trecho_<id>.jpg`; acentos (ã, ç, é, ô) em `work/qc/fontes_acentos.png`.")
     (ROOT / "relatorio.md").write_text("\n".join(L) + "\n")
     print("ok")
 

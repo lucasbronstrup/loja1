@@ -1,0 +1,486 @@
+{
+ "video": {
+  "codec_name": "h264",
+  "profile": "High",
+  "width": 1080,
+  "height": 1920,
+  "pix_fmt": "yuv420p",
+  "r_frame_rate": "60/1",
+  "avg_frame_rate": "60/1",
+  "nb_read_frames": "2161",
+  "color_space": "bt709",
+  "color_transfer": "bt709",
+  "color_primaries": "bt709",
+  "color_range": "tv",
+  "duration": "36.016667"
+ },
+ "audio": {
+  "codec_name": "aac",
+  "sample_rate": "48000",
+  "channels": 2,
+  "channel_layout": "stereo",
+  "duration": "36.016667",
+  "bit_rate": "302639"
+ },
+ "formato": {
+  "duration": "36.016667",
+  "size": "33798979",
+  "bit_rate": "7507408"
+ },
+ "faststart": true,
+ "x264": {
+  "crf": 15.0,
+  "preset_slow": true,
+  "trecho": "x264 - core 164 r3108 31e19f9 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=5 deblock=1:0:0 analyse=0x3:0x113 me=hex subm"
+ },
+ "cortes": [
+  {
+   "corte_quadro": 1,
+   "ms": 16.667,
+   "batida": true,
+   "de": "capa",
+   "para": "abertura",
+   "psnr_C-1_vs_ultimo_anterior": 37.53,
+   "psnr_C-1_vs_primeiro_novo": 8.79,
+   "psnr_C_vs_primeiro_novo": 47.23,
+   "psnr_C_vs_ultimo_anterior": 8.85,
+   "ok": true
+  },
+  {
+   "corte_quadro": 121,
+   "ms": 2016.667,
+   "batida": true,
+   "de": "abertura",
+   "para": "a1_destaque",
+   "psnr_C-1_vs_ultimo_anterior": 41.86,
+   "psnr_C-1_vs_primeiro_novo": 7.63,
+   "psnr_C_vs_primeiro_novo": 44.32,
+   "psnr_C_vs_ultimo_anterior": 7.68,
+   "ok": true
+  },
+  {
+   "corte_quadro": 241,
+   "ms": 4016.667,
+   "batida": true,
+   "de": "a1_destaque",
+   "para": "a1_pilha",
+   "psnr_C-1_vs_ultimo_anterior": 41.94,
+   "psnr_C-1_vs_primeiro_novo": 11.01,
+   "psnr_C_vs_primeiro_novo": 44.84,
+   "psnr_C_vs_ultimo_anterior": 11.11,
+   "ok": true
+  },
+  {
+   "corte_quadro": 361,
+   "ms": 6016.667,
+   "batida": true,
+   "de": "a1_pilha",
+   "para": "a1_mosaico",
+   "psnr_C-1_vs_ultimo_anterior": 43.73,
+   "psnr_C-1_vs_primeiro_novo": 6.26,
+   "psnr_C_vs_primeiro_novo": 46.81,
+   "psnr_C_vs_ultimo_anterior": 6.3,
+   "ok": true
+  },
+  {
+   "corte_quadro": 601,
+   "ms": 10016.667,
+   "batida": true,
+   "de": "a1_mosaico",
+   "para": "a1_nome",
+   "psnr_C-1_vs_ultimo_anterior": 46.43,
+   "psnr_C-1_vs_primeiro_novo": 17.37,
+   "psnr_C_vs_primeiro_novo": 46.65,
+   "psnr_C_vs_ultimo_anterior": 17.57,
+   "ok": true
+  },
+  {
+   "corte_quadro": 721,
+   "ms": 12016.667,
+   "batida": true,
+   "de": "a1_nome",
+   "para": "pivo",
+   "psnr_C-1_vs_ultimo_anterior": 46.18,
+   "psnr_C-1_vs_primeiro_novo": 8.21,
+   "psnr_C_vs_primeiro_novo": 47.46,
+   "psnr_C_vs_ultimo_anterior": 8.26,
+   "ok": true
+  },
+  {
+   "corte_quadro": 1081,
+   "ms": 18016.667,
+   "batida": true,
+   "de": "pivo",
+   "para": "a2_destaque",
+   "psnr_C-1_vs_ultimo_anterior": 44.5,
+   "psnr_C-1_vs_primeiro_novo": 9.27,
+   "psnr_C_vs_primeiro_novo": 41.53,
+   "psnr_C_vs_ultimo_anterior": 9.26,
+   "ok": true
+  },
+  {
+   "corte_quadro": 1201,
+   "ms": 20016.667,
+   "batida": true,
+   "de": "a2_destaque",
+   "para": "a2_pilha",
+   "psnr_C-1_vs_ultimo_anterior": 37.73,
+   "psnr_C-1_vs_primeiro_novo": 10.18,
+   "psnr_C_vs_primeiro_novo": 43.11,
+   "psnr_C_vs_ultimo_anterior": 10.22,
+   "ok": true
+  },
+  {
+   "corte_quadro": 1321,
+   "ms": 22016.667,
+   "batida": true,
+   "de": "a2_pilha",
+   "para": "a2_mosaico",
+   "psnr_C-1_vs_ultimo_anterior": 39.76,
+   "psnr_C-1_vs_primeiro_novo": 10.39,
+   "psnr_C_vs_primeiro_novo": 45.69,
+   "psnr_C_vs_ultimo_anterior": 10.46,
+   "ok": true
+  },
+  {
+   "corte_quadro": 1561,
+   "ms": 26016.667,
+   "batida": true,
+   "de": "a2_mosaico",
+   "para": "a2_nome",
+   "psnr_C-1_vs_ultimo_anterior": 44.13,
+   "psnr_C-1_vs_primeiro_novo": 26.71,
+   "psnr_C_vs_primeiro_novo": 44.31,
+   "psnr_C_vs_ultimo_anterior": 27.17,
+   "ok": true
+  },
+  {
+   "corte_quadro": 1681,
+   "ms": 28016.667,
+   "batida": true,
+   "de": "a2_nome",
+   "para": "final1",
+   "psnr_C-1_vs_ultimo_anterior": 43.93,
+   "psnr_C-1_vs_primeiro_novo": 7.96,
+   "psnr_C_vs_primeiro_novo": 44.13,
+   "psnr_C_vs_ultimo_anterior": 7.99,
+   "ok": true
+  },
+  {
+   "corte_quadro": 1921,
+   "ms": 32016.667,
+   "batida": true,
+   "de": "final1",
+   "para": "final2",
+   "psnr_C-1_vs_ultimo_anterior": 42.04,
+   "psnr_C-1_vs_primeiro_novo": 11.66,
+   "psnr_C_vs_primeiro_novo": 43.78,
+   "psnr_C_vs_ultimo_anterior": 11.68,
+   "ok": true
+  }
+ ],
+ "prancha": "work/qc/prancha_video.jpg",
+ "loudness": {
+  "music.wav": {
+   "lufs_integrado": -14.6,
+   "true_peak_dbtp": -2.0
+  },
+  "sfx.wav": {
+   "lufs_integrado": -22.2,
+   "true_peak_dbtp": -11.0
+  },
+  "riser.wav": {
+   "lufs_integrado": -25.0,
+   "true_peak_dbtp": -11.9
+  },
+  "master (final.mp4)": {
+   "lufs_integrado": -14.4,
+   "true_peak_dbtp": -1.3
+  }
+ },
+ "stems": {
+  "music": {
+   "amostras": 1728800,
+   "sr": 48000,
+   "canais": 2,
+   "subtipo": "PCM_24",
+   "duracao_s": 36.016666666666666,
+   "inicio_abs_max": 0.0,
+   "fim_abs_max": 1.1920928955078125e-07
+  },
+  "sfx": {
+   "amostras": 1728800,
+   "sr": 48000,
+   "canais": 2,
+   "subtipo": "PCM_24",
+   "duracao_s": 36.016666666666666,
+   "inicio_abs_max": 0.0,
+   "fim_abs_max": 0.0
+  },
+  "riser": {
+   "amostras": 1728800,
+   "sr": 48000,
+   "canais": 2,
+   "subtipo": "PCM_24",
+   "duracao_s": 36.016666666666666,
+   "inicio_abs_max": 0.0,
+   "fim_abs_max": 0.0
+  }
+ },
+ "audio_mp4_amostras_decodificadas": 1729536,
+ "listas_de_edicao": {
+  "escala": 48000,
+  "segmentos": [
+   1728800,
+   1728800
+  ],
+  "fim_s": [
+   36.016666666666666,
+   36.016666666666666
+  ]
+ },
+ "efeitos": [
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "cartão DESTAQUE (Graziela)",
+   "trecho": "a1_destaque",
+   "quadro": 151,
+   "ms": 2516.667,
+   "amostra": 120800,
+   "inicio_rel_amostras": 74,
+   "inicio_rel_quadros": 0.092,
+   "ok": true
+  },
+  {
+   "tipo": "impacto",
+   "evento": "nome",
+   "rotulo": "nome gigante GRAZIELA",
+   "trecho": "a1_nome",
+   "quadro": 601,
+   "ms": 10016.667,
+   "amostra": 480800,
+   "inicio_rel_amostras": 44,
+   "inicio_rel_quadros": 0.055,
+   "ok": true
+  },
+  {
+   "tipo": "passagem",
+   "evento": "whip",
+   "rotulo": "whip de saída (pico no corte)",
+   "trecho": "a1_nome",
+   "quadro": 721,
+   "ms": 12016.667,
+   "amostra": 576800,
+   "pico_rel_amostras": 92,
+   "pico_rel_quadros": 0.115,
+   "ok": true
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "dois cartões do ESPELHO",
+   "trecho": "pivo",
+   "quadro": 751,
+   "ms": 12516.667,
+   "amostra": 600800,
+   "inicio_rel_amostras": 47,
+   "inicio_rel_quadros": 0.059,
+   "ok": true
+  },
+  {
+   "tipo": "sinal",
+   "evento": "frase-chave",
+   "rotulo": "Ninguém substitui ninguém. (sinal)",
+   "trecho": "pivo",
+   "quadro": 961,
+   "ms": 16016.667,
+   "amostra": 768800,
+   "inicio_rel_amostras": 10,
+   "inicio_rel_quadros": 0.013,
+   "ok": true
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "cartão DESTAQUE (Eduarda)",
+   "trecho": "a2_destaque",
+   "quadro": 1111,
+   "ms": 18516.667,
+   "amostra": 888800,
+   "inicio_rel_amostras": 48,
+   "inicio_rel_quadros": 0.06,
+   "ok": true
+  },
+  {
+   "tipo": "impacto",
+   "evento": "nome",
+   "rotulo": "nome gigante EDUARDA",
+   "trecho": "a2_nome",
+   "quadro": 1561,
+   "ms": 26016.667,
+   "amostra": 1248800,
+   "inicio_rel_amostras": 48,
+   "inicio_rel_quadros": 0.06,
+   "ok": true
+  },
+  {
+   "tipo": "passagem",
+   "evento": "whip",
+   "rotulo": "whip de saída (pico no corte)",
+   "trecho": "a2_nome",
+   "quadro": 1681,
+   "ms": 28016.667,
+   "amostra": 1344800,
+   "pico_rel_amostras": -107,
+   "pico_rel_quadros": -0.134,
+   "ok": true
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "foto final 1",
+   "trecho": "final1",
+   "quadro": 1711,
+   "ms": 28516.667,
+   "amostra": 1368800,
+   "inicio_rel_amostras": 43,
+   "inicio_rel_quadros": 0.054,
+   "ok": true
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "foto final 2 (corte seco)",
+   "trecho": "final2",
+   "quadro": 1921,
+   "ms": 32016.667,
+   "amostra": 1536800,
+   "inicio_rel_amostras": 76,
+   "inicio_rel_quadros": 0.095,
+   "ok": true
+  },
+  {
+   "tipo": "brilho",
+   "evento": "confete",
+   "rotulo": "confete retangular",
+   "trecho": "final2",
+   "quadro": 1981,
+   "ms": 33016.667,
+   "amostra": 1584800,
+   "inicio_rel_amostras": 58,
+   "inicio_rel_quadros": 0.072,
+   "ok": true
+  },
+  {
+   "tipo": "sinal",
+   "evento": "frase-chave",
+   "rotulo": "linhas de encerramento",
+   "trecho": "final2",
+   "quadro": 2041,
+   "ms": 34016.667,
+   "amostra": 1632800,
+   "inicio_rel_amostras": 10,
+   "inicio_rel_quadros": 0.013,
+   "ok": true
+  }
+ ],
+ "riser": {
+  "primeira_amostra": 806,
+  "ultima_amostra": 96798,
+  "juncao_amostra": 96800,
+  "duracao_s": 1.9999,
+  "energia_ultimos_20ms_db": -23.9,
+  "depois_da_juncao_max": 0.0
+ },
+ "musica_nos_cortes": [
+  {
+   "corte": 121,
+   "ataque_db": 10.37
+  },
+  {
+   "corte": 241,
+   "ataque_db": 4.16
+  },
+  {
+   "corte": 361,
+   "ataque_db": 3.3
+  },
+  {
+   "corte": 601,
+   "ataque_db": 1.98
+  },
+  {
+   "corte": 721,
+   "ataque_db": 0.81
+  },
+  {
+   "corte": 1081,
+   "ataque_db": 7.29
+  },
+  {
+   "corte": 1201,
+   "ataque_db": 4.6
+  },
+  {
+   "corte": 1321,
+   "ataque_db": 3.12
+  },
+  {
+   "corte": 1561,
+   "ataque_db": 1.43
+  },
+  {
+   "corte": 1681,
+   "ataque_db": 3.31
+  },
+  {
+   "corte": 1921,
+   "ataque_db": 4.24
+  }
+ ],
+ "bordas": {
+  "music_ultimas_amostras": 7.736682891845703e-05,
+  "music_primeiras_800": 0.0,
+  "mp4_ultimos_10ms": 5.077161517874629e-07
+ },
+ "palavras_proibidas": {
+  "textos_verificados": [
+   "Duas",
+   "Eduarda,",
+   "Eduarda, gratidão.",
+   "Eduarda.",
+   "Gostamos",
+   "Graziela",
+   "Graziela, bem-vinda.",
+   "Ninguém",
+   "Nossa",
+   "Nossas",
+   "Nunca",
+   "a",
+   "com",
+   "começando.",
+   "coordenadoras",
+   "coração.",
+   "da",
+   "esquecer",
+   "esse",
+   "fica",
+   "ficam",
+   "gente.",
+   "história",
+   "memórias",
+   "momento",
+   "muito",
+   "ninguém.",
+   "no",
+   "pra",
+   "sempre.",
+   "substitui",
+   "só",
+   "tá",
+   "vamos"
+  ],
+  "ocorrencias": []
+ }
+}
