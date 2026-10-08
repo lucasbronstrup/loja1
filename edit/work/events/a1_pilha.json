@@ -1,0 +1,20 @@
+[
+ {
+  "t": 0.5,
+  "type": "carimbo",
+  "label": "carinho",
+  "local_s": 0.5,
+  "quadro": 271,
+  "ms": 4516.666666666667,
+  "trecho": "a1_pilha"
+ },
+ {
+  "t": 1,
+  "type": "arremesso",
+  "label": "cartão do topo",
+  "local_s": 1,
+  "quadro": 301,
+  "ms": 5016.666666666667,
+  "trecho": "a1_pilha"
+ }
+]

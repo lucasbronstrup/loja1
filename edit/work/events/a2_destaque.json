@@ -1,0 +1,20 @@
+[
+ {
+  "t": 0.5,
+  "type": "pouso",
+  "label": "cartão DESTAQUE (Eduarda)",
+  "local_s": 0.5,
+  "quadro": 1111,
+  "ms": 18516.666666666668,
+  "trecho": "a2_destaque"
+ },
+ {
+  "t": 0,
+  "type": "frase-chave",
+  "label": "Eduarda, inesquecível!",
+  "local_s": 0,
+  "quadro": 1081,
+  "ms": 18016.666666666668,
+  "trecho": "a2_destaque"
+ }
+]

@@ -1,0 +1,29 @@
+[
+ {
+  "t": 0,
+  "type": "pouso",
+  "label": "foto final 2 (corte seco)",
+  "local_s": 0,
+  "quadro": 1921,
+  "ms": 32016.666666666668,
+  "trecho": "final2"
+ },
+ {
+  "t": 1,
+  "type": "confete",
+  "label": "confete retangular",
+  "local_s": 1,
+  "quadro": 1981,
+  "ms": 33016.666666666664,
+  "trecho": "final2"
+ },
+ {
+  "t": 2,
+  "type": "frase-chave",
+  "label": "linhas de encerramento",
+  "local_s": 2,
+  "quadro": 2041,
+  "ms": 34016.666666666664,
+  "trecho": "final2"
+ }
+]

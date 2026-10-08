@@ -1,0 +1,20 @@
+[
+ {
+  "t": 0.5,
+  "type": "pouso",
+  "label": "cartão DESTAQUE (Graziela)",
+  "local_s": 0.5,
+  "quadro": 151,
+  "ms": 2516.6666666666665,
+  "trecho": "a1_destaque"
+ },
+ {
+  "t": 0,
+  "type": "frase-chave",
+  "label": "Graziela, bem-vinda!",
+  "local_s": 0,
+  "quadro": 121,
+  "ms": 2016.6666666666667,
+  "trecho": "a1_destaque"
+ }
+]

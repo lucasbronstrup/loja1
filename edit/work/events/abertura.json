@@ -1,0 +1,29 @@
+[
+ {
+  "t": 0,
+  "type": "frase-chave",
+  "label": "Duas coordenadoras",
+  "local_s": 0,
+  "quadro": 1,
+  "ms": 16.666666666666668,
+  "trecho": "abertura"
+ },
+ {
+  "t": 0.25,
+  "type": "frase-chave",
+  "label": "no coração.",
+  "local_s": 0.25,
+  "quadro": 16,
+  "ms": 266.6666666666667,
+  "trecho": "abertura"
+ },
+ {
+  "t": 0.8,
+  "type": "zoom-through",
+  "label": "aproximação com o riser",
+  "local_s": 0.8,
+  "quadro": 49,
+  "ms": 816.6666666666666,
+  "trecho": "abertura"
+ }
+]

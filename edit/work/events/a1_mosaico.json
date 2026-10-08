@@ -1,0 +1,29 @@
+[
+ {
+  "t": 1,
+  "type": "carimbo",
+  "label": "gratidão",
+  "local_s": 1,
+  "quadro": 421,
+  "ms": 7016.666666666667,
+  "trecho": "a1_mosaico"
+ },
+ {
+  "t": 0,
+  "type": "frase-chave",
+  "label": "Nossa história tá só começando.",
+  "local_s": 0,
+  "quadro": 361,
+  "ms": 6016.666666666667,
+  "trecho": "a1_mosaico"
+ },
+ {
+  "t": 2.5,
+  "type": "zoom-through",
+  "label": "aproximação à miniatura do NOME",
+  "local_s": 2.5,
+  "quadro": 511,
+  "ms": 8516.666666666666,
+  "trecho": "a1_mosaico"
+ }
+]

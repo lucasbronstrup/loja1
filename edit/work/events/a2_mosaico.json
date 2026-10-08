@@ -1,0 +1,29 @@
+[
+ {
+  "t": 1,
+  "type": "carimbo",
+  "label": "gratidão",
+  "local_s": 1,
+  "quadro": 1381,
+  "ms": 23016.666666666668,
+  "trecho": "a2_mosaico"
+ },
+ {
+  "t": 0,
+  "type": "frase-chave",
+  "label": "Nossas memórias ficam pra sempre.",
+  "local_s": 0,
+  "quadro": 1321,
+  "ms": 22016.666666666668,
+  "trecho": "a2_mosaico"
+ },
+ {
+  "t": 2.5,
+  "type": "zoom-through",
+  "label": "aproximação à miniatura do NOME",
+  "local_s": 2.5,
+  "quadro": 1471,
+  "ms": 24516.666666666668,
+  "trecho": "a2_mosaico"
+ }
+]

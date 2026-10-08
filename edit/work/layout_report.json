@@ -1,0 +1,80 @@
+{
+ "capa": {
+  "min_font_px": 110,
+  "issues": {}
+ },
+ "abertura": {
+  "min_font_px": 104,
+  "issues": {}
+ },
+ "a1_destaque": {
+  "min_font_px": 36,
+  "issues": {}
+ },
+ "a1_pilha": {
+  "min_font_px": 96,
+  "issues": {}
+ },
+ "a1_mosaico": {
+  "min_font_px": 52,
+  "issues": {}
+ },
+ "a1_nome": {
+  "min_font_px": 36,
+  "issues": {}
+ },
+ "pivo": {
+  "min_font_px": 36,
+  "issues": {
+   "texto sobre rosto | Graziela": {
+    "n": 1,
+    "t": [
+     0.5,
+     0.5
+    ],
+    "ex": "IMG_20261007_WA0086"
+   },
+   "texto sobre rosto | Eduarda.": {
+    "n": 1,
+    "t": [
+     2.333,
+     2.333
+    ],
+    "ex": "IMG_20261007_WA0086"
+   }
+  }
+ },
+ "a2_destaque": {
+  "min_font_px": 36,
+  "issues": {}
+ },
+ "a2_pilha": {
+  "min_font_px": 96,
+  "issues": {}
+ },
+ "a2_mosaico": {
+  "min_font_px": 52,
+  "issues": {
+   "texto sobre rosto | sempre.": {
+    "n": 1,
+    "t": [
+     0.333,
+     0.333
+    ],
+    "ex": "IMG_20261007_WA0086"
+   }
+  }
+ },
+ "a2_nome": {
+  "min_font_px": 36,
+  "issues": {}
+ },
+ "final1": {
+  "min_font_px": 96,
+  "issues": {}
+ },
+ "final2": {
+  "min_font_px": 80,
+  "issues": {}
+ }
+}

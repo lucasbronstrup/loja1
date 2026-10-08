@@ -1,0 +1,126 @@
+{
+ "ganho_comum_db": 0.403,
+ "lufs_musica_interno": -14.6,
+ "lufs_master_interno": -14.41,
+ "true_peak_soma_db": -0.34,
+ "true_peak_master_interno_db": -1.3,
+ "limitador": {
+  "ativado": true,
+  "limiar_dbtp": -1.3,
+  "reducao_max_db": 0.96,
+  "tempo_ativo_ms": 38.1,
+  "trechos_s": [
+   32.035
+  ]
+ },
+ "efeitos": [
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "cartão DESTAQUE (Graziela)",
+   "trecho": "a1_destaque",
+   "quadro": 151,
+   "ms": 2516.667,
+   "amostra": 120800
+  },
+  {
+   "tipo": "impacto",
+   "evento": "nome",
+   "rotulo": "nome gigante GRAZIELA",
+   "trecho": "a1_nome",
+   "quadro": 601,
+   "ms": 10016.667,
+   "amostra": 480800
+  },
+  {
+   "tipo": "passagem",
+   "evento": "whip",
+   "rotulo": "whip de saída (pico no corte)",
+   "trecho": "a1_nome",
+   "quadro": 721,
+   "ms": 12016.667,
+   "amostra": 576800
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "dois cartões do ESPELHO",
+   "trecho": "pivo",
+   "quadro": 751,
+   "ms": 12516.667,
+   "amostra": 600800
+  },
+  {
+   "tipo": "sinal",
+   "evento": "frase-chave",
+   "rotulo": "Ninguém substitui ninguém. (sinal)",
+   "trecho": "pivo",
+   "quadro": 961,
+   "ms": 16016.667,
+   "amostra": 768800
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "cartão DESTAQUE (Eduarda)",
+   "trecho": "a2_destaque",
+   "quadro": 1111,
+   "ms": 18516.667,
+   "amostra": 888800
+  },
+  {
+   "tipo": "impacto",
+   "evento": "nome",
+   "rotulo": "nome gigante EDUARDA",
+   "trecho": "a2_nome",
+   "quadro": 1561,
+   "ms": 26016.667,
+   "amostra": 1248800
+  },
+  {
+   "tipo": "passagem",
+   "evento": "whip",
+   "rotulo": "whip de saída (pico no corte)",
+   "trecho": "a2_nome",
+   "quadro": 1681,
+   "ms": 28016.667,
+   "amostra": 1344800
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "foto final 1",
+   "trecho": "final1",
+   "quadro": 1711,
+   "ms": 28516.667,
+   "amostra": 1368800
+  },
+  {
+   "tipo": "impacto",
+   "evento": "pouso",
+   "rotulo": "foto final 2 (corte seco)",
+   "trecho": "final2",
+   "quadro": 1921,
+   "ms": 32016.667,
+   "amostra": 1536800
+  },
+  {
+   "tipo": "brilho",
+   "evento": "confete",
+   "rotulo": "confete retangular",
+   "trecho": "final2",
+   "quadro": 1981,
+   "ms": 33016.667,
+   "amostra": 1584800
+  },
+  {
+   "tipo": "sinal",
+   "evento": "frase-chave",
+   "rotulo": "linhas de encerramento",
+   "trecho": "final2",
+   "quadro": 2041,
+   "ms": 34016.667,
+   "amostra": 1632800
+  }
+ ]
+}

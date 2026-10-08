@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080, height=1920">
+<style>
+@font-face{font-family:"Poppins";font-weight:700;src:url(assets/fonts/poppins-latin-700-normal.woff2) format("woff2");}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#fff}
+#root{position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(farthest-corner at 50% 36%,#fff 0%,#F3F3F0 100%)}
+.card{position:absolute;left:0;top:0;width:800px;height:1000px;background:#fff;border-radius:24px;box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.card img{position:absolute;left:16px;top:16px;width:768px;height:968px;object-fit:cover;border-radius:12px}
+h1{position:absolute;left:0;top:300px;width:100%;text-align:center;font:700 110px Poppins;margin:0;color:#111}
+</style></head><body>
+<div id="root" data-composition-id="test" data-start="0" data-width="1080" data-height="1920" data-duration="1">
+<svg width="0" height="0" style="position:absolute"><filter id="mb" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur id="mbg" stdDeviation="0 0"/></filter></svg>
+<div class="card" id="c1"><img src="assets/photos/test.jpg"></div>
+<h1 id="t">Coração ãçéô</h1>
+</div>
+<script src="assets/gsap.min.js"></script>
+<script>
+const card=document.getElementById('c1'), g=document.getElementById('mbg');
+function render(t){ const x=140+Math.sin(t*6)*300; card.style.transform=`translate(${x}px,500px) rotate(${t*10}deg)`; const s=Math.abs(Math.cos(t*6))*20; g.setAttribute('stdDeviation',`${s} 0`); card.style.filter=s>0.3?'url(#mb)':'none'; document.getElementById('t').textContent='t='+t.toFixed(4);}
+const clock={}; let _t=-1; Object.defineProperty(clock,'t',{get(){return _t},set(v){_t=v;render(v)}});
+const tl=gsap.timeline({paused:true}); tl.fromTo(clock,{t:0},{t:1,duration:1,ease:'none'},0);
+window.__timelines['test']=tl;
+</script></body></html>

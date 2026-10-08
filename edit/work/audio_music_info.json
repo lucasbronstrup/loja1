@@ -1,0 +1,18 @@
+{
+  "strings_gain": 0.85,
+  "act1_lufs": -14.47,
+  "act2_lufs": -14.45,
+  "music_lufs": -15.0,
+  "music_peak_db": -2.38,
+  "music_tp_db": -2.38,
+  "riser_peak_db": -12.38,
+  "riser_start_sample": 800,
+  "riser_end_sample": 96800,
+  "secoes_lufs": {
+    "abertura": -20.15,
+    "ato1": -14.47,
+    "pivo": -18.33,
+    "ato2": -14.45,
+    "final": -14.06
+  }
+}

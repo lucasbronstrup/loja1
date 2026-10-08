@@ -1,0 +1,56 @@
+[
+ {
+  "t": 0.25,
+  "type": "frase-chave",
+  "label": "Gostamos muito da Graziela",
+  "local_s": 0.25,
+  "quadro": 736,
+  "ms": 12266.666666666666,
+  "trecho": "pivo"
+ },
+ {
+  "t": 2,
+  "type": "frase-chave",
+  "label": "Nunca vamos esquecer a Eduarda.",
+  "local_s": 2,
+  "quadro": 841,
+  "ms": 14016.666666666666,
+  "trecho": "pivo"
+ },
+ {
+  "t": 4,
+  "type": "frase-chave",
+  "label": "Ninguém substitui ninguém.",
+  "local_s": 4,
+  "quadro": 961,
+  "ms": 16016.666666666666,
+  "trecho": "pivo"
+ },
+ {
+  "t": 0.5,
+  "type": "pouso",
+  "label": "dois cartões do ESPELHO",
+  "local_s": 0.5,
+  "quadro": 751,
+  "ms": 12516.666666666666,
+  "trecho": "pivo"
+ },
+ {
+  "t": 4,
+  "type": "frase-chave",
+  "label": "Ninguém substitui ninguém. (sinal)",
+  "local_s": 4,
+  "quadro": 961,
+  "ms": 16016.666666666666,
+  "trecho": "pivo"
+ },
+ {
+  "t": 5,
+  "type": "coracao",
+  "label": "coração desenhado",
+  "local_s": 5,
+  "quadro": 1021,
+  "ms": 17016.666666666668,
+  "trecho": "pivo"
+ }
+]

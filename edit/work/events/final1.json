@@ -1,0 +1,20 @@
+[
+ {
+  "t": 0.5,
+  "type": "pouso",
+  "label": "foto final 1",
+  "local_s": 0.5,
+  "quadro": 1711,
+  "ms": 28516.666666666668,
+  "trecho": "final1"
+ },
+ {
+  "t": 0.25,
+  "type": "frase-chave",
+  "label": "Eduarda, esse momento fica com a gente.",
+  "local_s": 0.25,
+  "quadro": 1696,
+  "ms": 28266.666666666668,
+  "trecho": "final1"
+ }
+]

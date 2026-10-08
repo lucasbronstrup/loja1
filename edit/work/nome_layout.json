@@ -1,0 +1,54 @@
+{
+  "font_size": 180.7,
+  "stroke": 14,
+  "cap_height": 127.4,
+  "names": {
+    "graziela": {
+      "photo": "IMG_20261007_WA0094",
+      "text": "GRAZIELA",
+      "baseline_y": 523,
+      "coverage": 0.195,
+      "letter_advances": [
+        137.69,
+        117.82,
+        133.18,
+        107.7,
+        53.31,
+        97.76,
+        86.19,
+        133.18
+      ],
+      "width": 866.8,
+      "face_screen": [
+        390,
+        572,
+        300,
+        371
+      ],
+      "head_top_screen": 427
+    },
+    "eduarda": {
+      "photo": "IMG_20261007_WA0086",
+      "text": "EDUARDA",
+      "baseline_y": 499,
+      "coverage": 0.184,
+      "letter_advances": [
+        97.76,
+        131.37,
+        127.39,
+        133.18,
+        117.82,
+        131.37,
+        133.18
+      ],
+      "width": 872.1,
+      "face_screen": [
+        495,
+        520,
+        303,
+        406
+      ],
+      "head_top_screen": 403
+    }
+  }
+}

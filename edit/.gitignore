@@ -1,0 +1,19 @@
+# dependências locais
+node_modules/
+.venv/
+__pycache__/
+# intermediários pesados (regeneráveis pelos scripts)
+work/frames/
+work/seg/
+work/video_60.mkv
+work/concat.txt
+work/lintproj/
+work/subframes_sample/
+work/*.npy
+work/master.wav
+work/music_preview.wav
+work/riser_preview.wav
+work/cutouts/*_u2net.png
+work/models/*.ttf
+work/photos/
+work/logs/

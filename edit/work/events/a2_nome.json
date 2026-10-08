@@ -1,0 +1,29 @@
+[
+ {
+  "t": 0,
+  "type": "nome",
+  "label": "nome gigante EDUARDA",
+  "local_s": 0,
+  "quadro": 1561,
+  "ms": 26016.666666666668,
+  "trecho": "a2_nome"
+ },
+ {
+  "t": 1,
+  "type": "carimbo",
+  "label": "coordenadora",
+  "local_s": 1,
+  "quadro": 1621,
+  "ms": 27016.666666666668,
+  "trecho": "a2_nome"
+ },
+ {
+  "t": 2,
+  "type": "whip",
+  "label": "whip de saída (pico no corte)",
+  "local_s": 2,
+  "quadro": 1681,
+  "ms": 28016.666666666668,
+  "trecho": "a2_nome"
+ }
+]

@@ -1,0 +1,29 @@
+[
+ {
+  "t": 0,
+  "type": "nome",
+  "label": "nome gigante GRAZIELA",
+  "local_s": 0,
+  "quadro": 601,
+  "ms": 10016.666666666666,
+  "trecho": "a1_nome"
+ },
+ {
+  "t": 1,
+  "type": "carimbo",
+  "label": "coordenadora",
+  "local_s": 1,
+  "quadro": 661,
+  "ms": 11016.666666666666,
+  "trecho": "a1_nome"
+ },
+ {
+  "t": 2,
+  "type": "whip",
+  "label": "whip de saída (pico no corte)",
+  "local_s": 2,
+  "quadro": 721,
+  "ms": 12016.666666666666,
+  "trecho": "a1_nome"
+ }
+]

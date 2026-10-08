@@ -1,0 +1,12 @@
+{
+  "name": "homenagem-coordenadoras",
+  "private": true,
+  "type": "module",
+  "description": "Vídeo de homenagem 9:16 (HyperFrames + FFmpeg + Python)",
+  "devDependencies": {
+    "@fontsource/instrument-serif": "^5.2.6",
+    "@fontsource/poppins": "^5.2.6",
+    "gsap": "^3.13.0",
+    "hyperframes": "^0.8.140"
+  }
+}
