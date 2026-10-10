@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Minoran — s01 tic</title>
+    <link rel="preload" href="vendor/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+    <link rel="stylesheet" href="shared/palette.css" />
+    <link rel="stylesheet" href="shared/base.css" />
+  </head>
+  <body>
+    <div id="s01-root" data-composition-id="s01-tic" data-start="0" data-duration="4" data-width="1920" data-height="1080">
+      <style>
+        [data-composition-id="s01-tic"] {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background: var(--mn-ink-deep);
+        }
+        [data-composition-id="s01-tic"] .s01-glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle 760px at 1400px 540px, rgba(217, 183, 106, 0.06) 0%, rgba(217, 183, 106, 0.025) 45%, rgba(14, 12, 10, 0) 75%);
+        }
+        [data-composition-id="s01-tic"] .s01-svg {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1920px;
+          height: 1080px;
+          overflow: visible;
+        }
+        [data-composition-id="s01-tic"] .s01-copy {
+          position: absolute;
+          left: 96px;
+          top: 0;
+          height: 100%;
+          width: 1000px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          color: var(--mn-ivory);
+        }
+        [data-composition-id="s01-tic"] .s01-line {
+          font-size: 96px;
+          line-height: 1.12;
+          white-space: nowrap;
+          padding-bottom: 0.08em;
+        }
+        [data-composition-id="s01-tic"] .s01-gold {
+          --g: -400px;
+        }
+        [data-composition-id="s01-tic"] .s01-flash {
+          position: absolute;
+          inset: 0;
+          background: var(--mn-ivory-flash);
+          opacity: 0;
+        }
+      </style>
+
+      <div id="s01-main" class="clip" data-start="0" data-duration="4" data-track-index="0">
+        <div class="s01-glow" id="s01-glow"></div>
+        <div class="mn-layer" id="s01-dialwrap">
+          <svg class="s01-svg" id="s01-svg" viewBox="0 0 1920 1080" aria-hidden="true">
+            <defs>
+              <linearGradient id="s01-goldstroke" x1="1100" y1="250" x2="1700" y2="830" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#8C6A2E" />
+                <stop offset="0.38" stop-color="#D9B76A" />
+                <stop offset="0.55" stop-color="#F6E7B8" />
+                <stop offset="1" stop-color="#B8893B" />
+              </linearGradient>
+            </defs>
+            <g id="s01-dial">
+              <path id="s01-face" d="" fill="#FFF8EE" fill-opacity="0" stroke="url(#s01-goldstroke)" stroke-width="2" />
+              <g id="s01-indices"></g>
+              <g id="s01-hand">
+                <line id="s01-hand-line" x1="0" y1="0" x2="0" y2="0" stroke="#E9CF92" stroke-width="2" stroke-linecap="round" />
+                <circle id="s01-hand-cw" cx="0" cy="0" r="9" fill="none" stroke="#E9CF92" stroke-width="2" />
+                <circle id="s01-hand-pin" cx="0" cy="0" r="5" fill="#F6E7B8" />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="s01-copy" id="s01-copy">
+          <p class="mn-serif s01-line" id="s01-l1">Une montre ne se limite pas</p>
+          <p class="mn-serif s01-line" id="s01-l2">à donner <span class="s01-gold" id="s01-heure" data-layout-allow-occlusion>l’heure</span>.</p>
+        </div>
+        <div class="s01-flash" id="s01-flash"></div>
+      </div>
+
+      <script src="vendor/gsap.min.js"></script>
+      <script src="vendor/SplitText.min.js"></script>
+      <script src="vendor/CustomEase.min.js"></script>
+      <script src="vendor/DrawSVGPlugin.min.js"></script>
+      <script src="vendor/MorphSVGPlugin.min.js"></script>
+      <script src="shared/timeline.js"></script>
+      <script src="shared/framing.js"></script>
+      <script src="shared/palette.js"></script>
+      <script src="shared/fx.js"></script>
+      <script>
+        (function () {
+          var ID = "s01-tic";
+          MN.init();
+          var S = MN.scene(ID);
+          var C = S.cue;
+          var NS = "http://www.w3.org/2000/svg";
+          // geometria do mostrador
+          var CX = 1400,
+            CY = 540,
+            R = 260; // Ø 520
+          var RW = 392,
+            RH = 520,
+            RR = 64; // forma Rectangulaires
+          var HAND = 224,
+            TAIL = 46;
+
+          var face = S.q("#s01-face");
+          face.setAttribute("d", MN.roundRectPath(CX, CY, 2 * R, 2 * R, R));
+          var hand = S.q("#s01-hand");
+          var hl = S.q("#s01-hand-line");
+          hl.setAttribute("x1", CX);
+          hl.setAttribute("x2", CX);
+          hl.setAttribute("y1", CY + TAIL - 9);
+          hl.setAttribute("y2", CY - HAND);
+          var cw = S.q("#s01-hand-cw");
+          cw.setAttribute("cx", CX);
+          cw.setAttribute("cy", CY + TAIL);
+          var pin = S.q("#s01-hand-pin");
+          pin.setAttribute("cx", CX);
+          pin.setAttribute("cy", CY);
+
+          // 12 índices
+          var idx = [];
+          var gIdx = S.q("#s01-indices");
+          for (var i = 0; i < 12; i++) {
+            var g = document.createElementNS(NS, "g");
+            g.setAttribute("transform", "rotate(" + i * 30 + " " + CX + " " + CY + ")");
+            var ln = document.createElementNS(NS, "line");
+            var major = i % 3 === 0;
+            ln.setAttribute("x1", CX);
+            ln.setAttribute("x2", CX);
+            ln.setAttribute("y1", CY - (R - 12));
+            ln.setAttribute("y2", CY - (R - (major ? 40 : 30)));
+            ln.setAttribute("stroke", major ? "#F0DDA6" : "#C9A85E");
+            ln.setAttribute("stroke-width", major ? 3 : 2);
+            ln.setAttribute("stroke-linecap", "round");
+            g.appendChild(ln);
+            gIdx.appendChild(g);
+            idx.push({ el: ln, deg: i * 30, major: major });
+          }
+
+          MN.fonts(['400 italic 96px "Instrument Serif"']).then(function () {
+            var tl = gsap.timeline({ paused: true });
+            var dial = S.q("#s01-dial");
+            var svg = S.q("#s01-svg");
+
+            // deriva contínua (nada parado)
+            tl.fromTo(dial, { scale: 0.985 }, { scale: 1.02, svgOrigin: CX + " " + CY, duration: C("out")[0], ease: "none", immediateRender: true }, 0);
+            tl.fromTo("#s01-copy", { x: 0 }, { x: -14, duration: S.dur, ease: "none", immediateRender: true }, 0);
+            tl.fromTo("#s01-glow", { opacity: 0.6 }, { opacity: 1, duration: C("out")[0], ease: "sine.inOut", immediateRender: true }, 0);
+
+            // círculo desenhado (0.1–1.0)
+            var draw = C("circleDraw");
+            tl.fromTo(face, { drawSVG: "0% 0%" }, { drawSVG: "0% 100%", duration: draw[1] - draw[0], ease: "mn.inOut", immediateRender: true }, draw[0]);
+            tl.set(face, { strokeDasharray: "none", strokeDashoffset: 0 }, draw[1] + 0.01);
+
+            // índices em stagger
+            tl.fromTo(
+              idx.map(function (d) { return d.el; }),
+              { opacity: 0, drawSVG: "50% 50%" },
+              { opacity: 1, drawSVG: "0% 100%", duration: 0.5, ease: "mn.out", stagger: 0.045, immediateRender: true },
+              C("indices"),
+            );
+
+            gsap.set(hand, { svgOrigin: CX + " " + CY });
+            gsap.set(dial, { svgOrigin: CX + " " + CY });
+            // ponteiro: entra junto do círculo e salta +6° em cada tique
+            var ticks = C("tick");
+            var a0 = -6 * ticks.length; // termina às 12h no último tique
+            tl.fromTo(hand, { opacity: 0, rotation: a0 - 30 }, { opacity: 1, rotation: a0, svgOrigin: CX + " " + CY, duration: 0.6, ease: "mn.out", immediateRender: true }, draw[0] + 0.2);
+            ticks.forEach(function (t, k) {
+              tl.to(hand, { rotation: a0 + 6 * (k + 1), svgOrigin: CX + " " + CY, duration: MN.TICK_DUR, ease: "mn.tick" }, t);
+            });
+
+            // texto: máscara palavra a palavra
+            var s1 = MN.split(S.q("#s01-l1"), "words");
+            var s2 = MN.split(S.q("#s01-l2"), "words");
+            MN.splitReveal(tl, s1.words, { at: C("line1"), dur: 0.8, stagger: 0.085 });
+            MN.splitReveal(tl, s2.words, { at: C("line2"), dur: 0.8, stagger: 0.11 });
+            // "l’heure" em ouro + glint
+            var heure = S.q("#s01-heure");
+            var gw = MN.goldGlintChars(heure);
+            tl.fromTo(heure, { "--g": -0.7 * gw + "px" }, { "--g": 1.3 * gw + "px", duration: 0.75, ease: "power2.inOut", immediateRender: true }, C("goldGlint"));
+
+            // 2.5: morph círculo -> retângulo arredondado; índices e ponteiro acompanham
+            var m = C("morph");
+            tl.to(face, { morphSVG: { shape: MN.roundRectPath(CX, CY, RW, RH, RR), shapeIndex: 0, map: "position" }, duration: 0.7, ease: "mn.inOut" }, m);
+            idx.forEach(function (d) {
+              var t = MN.rectRadius(d.deg, RW / 2, RH / 2);
+              // nos cantos o raio do arredondamento recolhe o índice
+              var corner = Math.abs(Math.sin((d.deg * Math.PI) / 180)) > 0.5 && Math.abs(Math.cos((d.deg * Math.PI) / 180)) > 0.5;
+              var inset = corner ? 22 : 12;
+              tl.to(d.el, { attr: { y1: CY - (t - inset), y2: CY - (t - inset - (d.major ? 28 : 18)) }, duration: 0.7, ease: "mn.inOut" }, m);
+            });
+            tl.to(hl, { attr: { y2: CY - (RH / 2 - 44) }, duration: 0.7, ease: "mn.inOut" }, m);
+
+            // 3.1: texto sai
+            MN.textOut(tl, s1.chars, { at: C("textOut"), stagger: 0.012, dur: 0.24 });
+            MN.textOut(tl, s2.chars, { at: C("textOut"), stagger: 0.012, dur: 0.24 });
+
+            // 3.55–4.0: OUT — o mostrador escala 1 -> 14 rumo ao vidro e termina em marfim chapado
+            var out = C("out");
+            var od = out[1] - out[0];
+            var defs = MN.defs(S.q("#s01-main"), "s01");
+            var zb = MN.blurFilter(defs, "s01-zblur", "xy");
+            tl.fromTo(svg, { scale: 1 }, { scale: 14, transformOrigin: CX + "px " + CY + "px", duration: od, ease: "expo.in", immediateRender: false }, out[0]);
+            MN.blurPulse(tl, svg, zb, { at: out[0], dur: od, to: 6, axis: "xy", ease: "expo.in" });
+            tl.to(face, { attr: { "fill-opacity": 1 }, duration: od * 0.8, ease: "power2.in" }, out[0]);
+            tl.fromTo("#s01-glow", { scale: 1 }, { scale: 3, transformOrigin: CX + "px " + CY + "px", duration: od, ease: "expo.in", immediateRender: false }, out[0]);
+            MN.flash(tl, S.q("#s01-flash"), { at: out[1] - 0.14, dur: 0.14, from: 0, to: 1, ease: "power2.in", immediate: false });
+
+            window.__timelines[ID] = tl;
+          });
+        })();
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+{
+  "duration": 42,
+  "assertions": [
+    {
+      "kind": "appearsBy",
+      "selector": "#s08-brand",
+      "bySec": 37.9
+    },
+    {
+      "kind": "appearsBy",
+      "selector": "#s08-tag",
+      "bySec": 38.8
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s01-copy"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s02-kicker"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s02-support"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s03-copyA"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s03-copyB"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s04-header"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s04-caps"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s05-title"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s05-meta"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s06-copy"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s07-sig"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s08-brand"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s08-tag"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#s08-url"
+    },
+    {
+      "kind": "keepsMoving",
+      "maxStaticSec": 2
+    }
+  ]
+}

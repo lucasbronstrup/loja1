@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Minoran — institucional (revisão)</title>
+    <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+    <link rel="stylesheet" href="shared/palette.css" />
+    <link rel="stylesheet" href="shared/base.css" />
+    <style>
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #0e0c0a;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Só para revisão: monta as 8 cenas nos tempos de timeline.json. O master é renderizado cena a cena (build.py). -->
+    <div id="root" data-composition-id="minoran" data-no-timeline data-start="0" data-duration="42" data-width="1920" data-height="1080">
+      <div id="mn-s01-tic" data-composition-id="s01-tic" data-composition-src="s01-tic.html" data-start="0" data-duration="4" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="mn-s02-elegance" data-composition-id="s02-elegance" data-composition-src="s02-elegance.html" data-start="4" data-duration="6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="mn-s03-lignes" data-composition-id="s03-lignes" data-composition-src="s03-lignes.html" data-start="10" data-duration="4" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="mn-s04-nuances" data-composition-id="s04-nuances" data-composition-src="s04-nuances.html" data-start="14" data-duration="6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="mn-s05-styles" data-composition-id="s05-styles" data-composition-src="s05-styles.html" data-start="20" data-duration="6" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="mn-s06-geste" data-composition-id="s06-geste" data-composition-src="s06-geste.html" data-start="26" data-duration="6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="mn-s07-rythme" data-composition-id="s07-rythme" data-composition-src="s07-rythme.html" data-start="32" data-duration="4" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="mn-s08-signature" data-composition-id="s08-signature" data-composition-src="s08-signature.html" data-start="36" data-duration="6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <audio id="music" data-timeline-role="music" src="audio/master.wav" data-start="0" data-duration="42" data-track-index="2"></audio>
+    </div>
+  </body>
+</html>

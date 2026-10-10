@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Minoran — s07 rythme</title>
+    <link rel="preload" href="vendor/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+    <link rel="stylesheet" href="shared/palette.css" />
+    <link rel="stylesheet" href="shared/base.css" />
+  </head>
+  <body>
+    <div id="s07-root" data-composition-id="s07-rythme" data-start="0" data-duration="4" data-width="1920" data-height="1080">
+      <style>
+        [data-composition-id="s07-rythme"] {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background: var(--mn-ink);
+        }
+        [data-composition-id="s07-rythme"] .s07-stage {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        [data-composition-id="s07-rythme"] .s07-frame {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        [data-composition-id="s07-rythme"] .s07-cam {
+          position: absolute;
+          inset: 0;
+        }
+        [data-composition-id="s07-rythme"] .s07-bd {
+          position: absolute;
+          left: -240px;
+          top: -135px;
+          width: 2400px;
+          height: 1350px;
+          object-fit: cover;
+          display: block;
+        }
+        [data-composition-id="s07-rythme"] .s07-pic {
+          position: absolute;
+          display: block;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+        }
+        [data-composition-id="s07-rythme"] .s07-block {
+          position: absolute;
+          left: -120px;
+          top: -80px;
+          width: 2160px;
+          height: 1240px;
+        }
+        [data-composition-id="s07-rythme"] .s07-cut {
+          position: absolute;
+          display: block;
+        }
+        [data-composition-id="s07-rythme"] .s07-scrim {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 1150px 560px at 960px 540px, rgba(14, 12, 10, 0.66) 0%, rgba(14, 12, 10, 0.4) 60%, rgba(14, 12, 10, 0.16) 100%);
+        }
+        [data-composition-id="s07-rythme"] .s07-flash {
+          position: absolute;
+          inset: 0;
+          background: #ffffff;
+          opacity: 0;
+        }
+        [data-composition-id="s07-rythme"] .s07-words {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1920px;
+          height: 1080px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--mn-ivory);
+        }
+        [data-composition-id="s07-rythme"] .s07-big {
+          font-size: 160px;
+          white-space: nowrap;
+          text-shadow: 0 6px 40px rgba(0, 0, 0, 0.42), 0 2px 8px rgba(0, 0, 0, 0.25);
+          padding-bottom: 0.1em;
+        }
+        [data-composition-id="s07-rythme"] .s07-sig {
+          position: absolute;
+          left: 96px;
+          top: 380px;
+          color: var(--mn-ivory);
+        }
+        [data-composition-id="s07-rythme"] .s07-flourish {
+          position: absolute;
+          left: 96px;
+          top: 590px;
+          width: 980px;
+          height: 150px;
+          overflow: visible;
+        }
+        [data-composition-id="s07-rythme"] .s07-ink {
+          position: absolute;
+          inset: 0;
+          background: var(--mn-ink);
+          opacity: 0;
+        }
+      </style>
+
+      <div id="s07-main" class="clip" data-start="0" data-duration="4" data-track-index="0">
+        <div class="s07-stage" id="s07-stage">
+          <!-- montagem: um quadro por cue de shutter (corte seco no tempo) -->
+          <div class="s07-frame clip" id="s07-f0" data-start="0" data-duration="0.25" data-track-index="1"><div class="s07-cam" id="s07-c0"></div></div>
+          <div class="s07-frame clip" id="s07-f1" data-start="0.25" data-duration="0.25" data-track-index="1"><div class="s07-cam" id="s07-c1"></div></div>
+          <div class="s07-frame clip" id="s07-f2" data-start="0.5" data-duration="0.25" data-track-index="1"><div class="s07-cam" id="s07-c2"></div></div>
+          <div class="s07-frame clip" id="s07-f3" data-start="0.75" data-duration="0.25" data-track-index="1"><div class="s07-cam" id="s07-c3"></div></div>
+          <div class="s07-frame clip" id="s07-f4" data-start="1" data-duration="0.25" data-track-index="1"><div class="s07-cam" id="s07-c4"></div></div>
+          <div class="s07-frame clip" id="s07-f5" data-start="1.25" data-duration="0.25" data-track-index="1"><div class="s07-cam" id="s07-c5"></div></div>
+          <div class="s07-frame clip" id="s07-f6" data-start="1.5" data-duration="0.25" data-track-index="1"><div class="s07-cam" id="s07-c6"></div></div>
+          <!-- o último quadro vira o plano calmo (1.75–4) -->
+          <div class="s07-frame clip" id="s07-f7" data-start="1.75" data-duration="2.25" data-track-index="1"><div class="s07-cam" id="s07-c7"></div></div>
+          <div class="s07-scrim" id="s07-scrim"></div>
+          <div class="s07-words" id="s07-words">
+            <p class="mn-serif s07-big" id="s07-vr">Votre rythme.</p>
+          </div>
+          <div class="s07-sig" id="s07-sigwrap">
+            <p class="mn-serif s07-big" id="s07-sig">Votre signature.</p>
+          </div>
+          <svg class="s07-flourish" id="s07-flourish" viewBox="0 0 980 150" aria-hidden="true">
+            <defs>
+              <linearGradient id="s07-gold" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#8C6A2E" />
+                <stop offset="0.38" stop-color="#D9B76A" />
+                <stop offset="0.55" stop-color="#F6E7B8" />
+                <stop offset="1" stop-color="#B8893B" />
+              </linearGradient>
+            </defs>
+            <path id="s07-swash" d="M14,96 C120,52 230,40 330,58 C410,72 452,104 430,118 C408,132 372,106 398,82 C430,52 520,40 610,48 C720,58 800,82 880,74 C918,70 948,58 966,44" fill="none" stroke="url(#s07-gold)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="s07-flash" id="s07-flash"></div>
+          <div class="s07-ink" id="s07-ink"></div>
+        </div>
+        <div class="s07-flash" id="s07-inflash"></div>
+      </div>
+
+      <script src="vendor/gsap.min.js"></script>
+      <script src="vendor/SplitText.min.js"></script>
+      <script src="vendor/CustomEase.min.js"></script>
+      <script src="vendor/DrawSVGPlugin.min.js"></script>
+      <script src="vendor/MorphSVGPlugin.min.js"></script>
+      <script src="shared/timeline.js"></script>
+      <script src="shared/framing.js"></script>
+      <script src="shared/palette.js"></script>
+      <script src="shared/fx.js"></script>
+      <script>
+        (function () {
+          var ID = "s07-rythme";
+          MN.init();
+          var S = MN.scene(ID);
+          var C = S.cue;
+          var FR = window.MINORAN_FRAMING;
+          // ordem da montagem
+          var FRAMES = [
+            { kind: "photo", key: "story_home" },
+            { kind: "photo", key: "hero" },
+            { kind: "photo", key: "doree_noir_9093" },
+            { kind: "cut", key: "sil_rose", block: "#6E3B3F" },
+            { kind: "cut", key: "sil_bleu_clair", block: "#2C3858" },
+            { kind: "cut", key: "sil_creme", block: "#4D4031" },
+            { kind: "photo", key: "apres" },
+            { kind: "cut", key: "nf5075_noir", block: "#12100E", at: [1380, 520], h: 780 },
+          ];
+          var origins = [];
+          FRAMES.forEach(function (fr, i) {
+            var cam = S.q("#s07-c" + i);
+            var f = FR[fr.key];
+            if (fr.kind === "photo") {
+              // fundo: versão pré-desfocada (σ 20) cobrindo o quadro; foto nítida a <= 0.94 do arquivo
+              var bd = document.createElement("img");
+              bd.className = "s07-bd";
+              bd.src = "assets/img/" + fr.key + "_b20.jpg";
+              cam.appendChild(bd);
+              var W = f.size[0],
+                H = f.size[1];
+              var s = W / H > 1.5 ? 0.94 : 0.909;
+              var w = W * s,
+                h = H * s;
+              var fx = f.watch ? f.watch.cx : f.focal.x,
+                fy = f.watch ? f.watch.cy : f.focal.y;
+              var left = (1920 - w) / 2,
+                top = Math.min(0, Math.max(1080 - h, 540 - fy * h));
+              var pic = document.createElement("img");
+              pic.className = "s07-pic";
+              pic.src = "assets/img/" + fr.key + ".jpg";
+              pic.style.width = w + "px";
+              pic.style.height = h + "px";
+              pic.style.left = left + "px";
+              pic.style.top = top + "px";
+              cam.appendChild(pic);
+              origins.push([left + fx * w, top + fy * h]);
+            } else {
+              var block = document.createElement("div");
+              block.className = "s07-block";
+              block.style.background = "radial-gradient(ellipse 900px 700px at 50% 52%, " + fr.block + "cc 0%, " + fr.block + " 55%, #0e0c0a 130%)";
+              cam.appendChild(block);
+              var crop = f.cut.cropPx;
+              var hh = fr.h || 760;
+              var sc = hh / crop[3];
+              var at = fr.at || [960, 520];
+              var dx = (f.watch.cx * f.size[0] - crop[0]) * sc,
+                dy = (f.watch.cy * f.size[1] - crop[1]) * sc;
+              var img = document.createElement("img");
+              img.className = "s07-cut";
+              img.src = "assets/cut/" + fr.key + ".png";
+              img.style.width = crop[2] * sc + "px";
+              img.style.height = hh + "px";
+              img.style.left = at[0] - dx + "px";
+              img.style.top = at[1] - dy + "px";
+              img.style.filter = "drop-shadow(0 30px 40px rgba(0,0,0,0.45))";
+              if (i === 7) img.id = "s07-hero";
+              cam.appendChild(img);
+              origins.push(at);
+            }
+          });
+
+          MN.fonts(['400 italic 160px "Instrument Serif"']).then(function () {
+            var tl = gsap.timeline({ paused: true });
+            var D = S.dur;
+
+            // IN: nasce do branco
+            var inn = C("in");
+            MN.flash(tl, S.q("#s07-inflash"), { at: inn[0], dur: inn[1] - inn[0], from: 1, to: 0, ease: "power2.out" });
+
+            // montagem: micro push 1.06 -> 1 e dutch ±2° alternado, flash curto em cada corte
+            var shots = C("shutter");
+            shots.forEach(function (t, i) {
+              var cam = S.q("#s07-c" + i);
+              var o = origins[i];
+              var dutch = i % 2 === 0 ? 2 : -2;
+              var dur = i < 7 ? 0.25 : 0.25;
+              tl.fromTo(cam, { scale: 1.06, rotation: dutch }, { scale: 1.0, rotation: dutch * 0.6, transformOrigin: o[0] + "px " + o[1] + "px", duration: dur, ease: "power2.out", immediateRender: i === 0 }, t);
+              if (i > 0) tl.fromTo("#s07-flash", { opacity: 0.28 }, { opacity: 0, duration: 0.07, ease: "power2.out", immediateRender: false }, t);
+            });
+            // scrim só durante a montagem (texto marfim legível sobre qualquer quadro)
+            tl.to("#s07-scrim", { opacity: 0, duration: 0.4, ease: "sine.inOut" }, C("montageTextOut"));
+
+            // "Votre" (0.0) e "rythme." (0.5)
+            var vr = MN.split(S.q("#s07-vr"), "words");
+            MN.splitReveal(tl, vr.words[0].querySelectorAll(".mn-c"), { at: C("word1"), dur: 0.5, stagger: 0.03 });
+            MN.splitReveal(tl, vr.words[1].querySelectorAll(".mn-c"), { at: C("word2"), dur: 0.55, stagger: 0.03 });
+            tl.fromTo("#s07-words", { scale: 1 }, { scale: 1.04, transformOrigin: "50% 50%", duration: C("montageTextOut"), ease: "none", immediateRender: true }, 0);
+            MN.textOut(tl, vr.chars, { at: C("montageTextOut"), stagger: 0.01, dur: 0.28 });
+
+            // plano calmo (2–4): a montagem para num plano com push lento
+            var cm = C("calm");
+            var c7 = S.q("#s07-c7");
+            tl.to(c7, { scale: 1.06, rotation: 0, transformOrigin: origins[7][0] + "px " + origins[7][1] + "px", duration: cm[1] - cm[0], ease: "sine.inOut" }, cm[0]);
+
+            // 2.25: "Votre signature." + floreio manuscrito em ouro (DrawSVG 0.9 s, power2.inOut)
+            var sg = MN.split(S.q("#s07-sig"), "words");
+            MN.splitReveal(tl, sg.chars, { at: C("signature"), dur: 0.7, stagger: 0.025 });
+            var fl = C("flourish");
+            tl.fromTo("#s07-swash", { drawSVG: "0%" }, { drawSVG: "100%", duration: fl[1] - fl[0], ease: "power2.inOut", immediateRender: true }, fl[0]);
+            tl.fromTo("#s07-sigwrap", { x: 0 }, { x: -12, duration: D - C("signature"), ease: "none", immediateRender: true }, C("signature"));
+
+            // 3.4: saída
+            var to = C("textOut");
+            MN.textOut(tl, sg.chars, { at: to, stagger: 0.008, dur: 0.26 });
+            tl.to("#s07-swash", { drawSVG: "100% 100%", duration: 0.3, ease: "power2.in" }, to);
+
+            // 3.65–4.0: OUT — zoom-through escuro até tinta chapada (rumo ao mostrador negro)
+            var out = C("out");
+            var od = out[1] - out[0];
+            var defs = MN.defs(S.q("#s07-main"), "s07");
+            var bxy = MN.blurFilter(defs, "s07-mbxy", "xy");
+            tl.to(c7, { scale: 9, duration: od, ease: "expo.in" }, out[0]);
+            MN.blurPulse(tl, c7, bxy, { at: out[0], dur: od, to: 10, axis: "xy", ease: "expo.in" });
+            MN.flash(tl, S.q("#s07-ink"), { at: out[1] - 0.16, dur: 0.16, from: 0, to: 1, ease: "power2.in", immediate: false });
+
+            window.__timelines[ID] = tl;
+          });
+        })();
+      </script>
+    </div>
+  </body>
+</html>

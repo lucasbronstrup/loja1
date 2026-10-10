@@ -1,0 +1,17 @@
+# regenerável com `python build.py assets` / `audio` / `render`
+node_modules/
+.venv/
+__pycache__/
+.hf/
+renders/
+capture/
+vendor/
+assets/src/
+assets/img/
+assets/cut/
+assets/masks/
+assets/tex/
+audio/
+snapshots/
+out/qa/*.png
+spike/

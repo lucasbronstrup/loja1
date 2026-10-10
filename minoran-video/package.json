@@ -1,0 +1,25 @@
+{
+  "name": "minoran-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.143 preview",
+    "check": "npx --yes hyperframes@0.8.143 check",
+    "render": "npx --yes hyperframes@0.8.143 render",
+    "publish": "npx --yes hyperframes@0.8.143 publish"
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
+    "gsap": "^3.15.0"
+  },
+  "devDependencies": {
+    "hyperframes": "^0.8.143"
+  }
+}

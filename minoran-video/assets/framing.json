@@ -1,0 +1,928 @@
+{
+  "hero": {
+    "size": [
+      1442,
+      1442
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/hero.png",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "cropPx": [
+        0,
+        0,
+        1442,
+        1442
+      ]
+    },
+    "focal": {
+      "x": 0.5553528637449042,
+      "y": 0.4494657616196213,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "gold",
+        "case": {
+          "cx": 0.503,
+          "cy": 0.451,
+          "rx": 0.067,
+          "ry": 0.066
+        },
+        "method": "visual inspection",
+        "auto": {
+          "cx": 0.6276005547850209,
+          "cy": 0.5086685159500693,
+          "rx": 0.14156726768377254,
+          "ry": 0.17307212205270459,
+          "dial": [
+            0.507628294036061,
+            0.361997226074896,
+            0.23994452149791956,
+            0.2933425797503467
+          ]
+        }
+      }
+    ],
+    "watchMask": "assets/masks/hero_watch.png",
+    "watch": {
+      "cx": 0.503,
+      "cy": 0.451,
+      "rx": 0.067,
+      "ry": 0.066
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "story_home": {
+    "size": [
+      1442,
+      1442
+    ],
+    "faces": [],
+    "facesRejected": [
+      {
+        "kind": "frontal",
+        "x": 0.8474341192787794,
+        "y": 0.5970873786407767,
+        "w": 0.13800277392510402,
+        "h": 0.13800277392510402,
+        "weight": 39601.0,
+        "skin": 0.0,
+        "eyes": 0
+      }
+    ],
+    "maxScale": 1.0,
+    "focal": {
+      "x": 0.5125123623524228,
+      "y": 0.5214419342910315,
+      "source": "sobel"
+    },
+    "watches": [
+      {
+        "metal": "gold",
+        "bbox": [
+          0.1900138696255201,
+          0.12482662968099861,
+          0.3592233009708738,
+          0.6102635228848821
+        ],
+        "case": {
+          "cx": 0.37552011095700416,
+          "cy": 0.4689417418651507,
+          "rx": 0.1730235783633842,
+          "ry": 0.1979889042995839
+        },
+        "method": "metal-blob"
+      },
+      {
+        "metal": "silver",
+        "bbox": [
+          0.529126213592233,
+          0.1941747572815534,
+          0.35436893203883496,
+          0.6331484049930652
+        ],
+        "case": {
+          "cx": 0.7059639389736477,
+          "cy": 0.4740605934275613,
+          "rx": 0.1768377253814147,
+          "ry": 0.2007628294036061
+        },
+        "method": "metal-blob"
+      }
+    ],
+    "watchMask": "assets/masks/story_home_watch.png",
+    "watch": {
+      "cx": 0.37552011095700416,
+      "cy": 0.4689417418651507,
+      "rx": 0.1730235783633842,
+      "ry": 0.1979889042995839
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "apres": {
+    "size": [
+      1442,
+      1442
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "focal": {
+      "x": 0.5111354729657881,
+      "y": 0.5045242902348334,
+      "source": "sobel"
+    },
+    "watches": [
+      {
+        "metal": "silver",
+        "bbox": [
+          0.3377253814147018,
+          0.31900138696255204,
+          0.23717059639389737,
+          0.39944521497919555
+        ],
+        "case": {
+          "cx": 0.45596393897364773,
+          "cy": 0.46359223300970875,
+          "rx": 0.11823855755894591,
+          "ry": 0.10124826629680998
+        },
+        "method": "metal-blob"
+      }
+    ],
+    "watchMask": "assets/masks/apres_watch.png",
+    "watch": {
+      "cx": 0.45596393897364773,
+      "cy": 0.46359223300970875,
+      "rx": 0.11823855755894591,
+      "ry": 0.10124826629680998
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "avant": {
+    "size": [
+      1442,
+      1442
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "focal": {
+      "x": 0.5564945914769215,
+      "y": 0.5031936268802071,
+      "source": "sobel"
+    },
+    "watches": [],
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "rect_argentee_34": {
+    "size": [
+      946,
+      946
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/rect_argentee_34.png",
+      "crop": [
+        0.056025369978858354,
+        0.0,
+        0.9439746300211417,
+        1.0
+      ],
+      "cropPx": [
+        53,
+        0,
+        893,
+        946
+      ]
+    },
+    "focal": {
+      "x": 0.5163605138192632,
+      "y": 0.4873538066622083,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.5121564482029598,
+          "cy": 0.4476744186046512,
+          "rx": 0.3186997885835095,
+          "ry": 0.34614164904862577,
+          "dial": [
+            0.24207188160676532,
+            0.1543340380549683,
+            0.540169133192389,
+            0.5866807610993657
+          ]
+        },
+        "method": "dial-hole"
+      }
+    ],
+    "watchMask": "assets/masks/rect_argentee_34_watch.png",
+    "watch": {
+      "cx": 0.5121564482029598,
+      "cy": 0.4476744186046512,
+      "rx": 0.3186997885835095,
+      "ry": 0.34614164904862577
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "sil_creme": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/sil_creme.png",
+      "crop": [
+        0.22608695652173913,
+        0.02318840579710145,
+        0.5681159420289855,
+        0.9671497584541063
+      ],
+      "cropPx": [
+        234,
+        24,
+        588,
+        1001
+      ]
+    },
+    "focal": {
+      "x": 0.4920282019806702,
+      "y": 0.48057593278190436,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.505,
+          "cy": 0.415,
+          "rx": 0.235,
+          "ry": 0.215
+        },
+        "method": "visual inspection",
+        "auto": {
+          "cx": 0.5096618357487923,
+          "cy": 0.4391304347826087,
+          "rx": 0.27294685990338163,
+          "ry": 0.11594202898550725
+        }
+      }
+    ],
+    "watchMask": "assets/masks/sil_creme_watch.png",
+    "watch": {
+      "cx": 0.505,
+      "cy": 0.415,
+      "rx": 0.235,
+      "ry": 0.215
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "sil_rose": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/sil_rose.png",
+      "crop": [
+        0.20676328502415459,
+        0.018357487922705314,
+        0.5603864734299517,
+        0.9584541062801932
+      ],
+      "cropPx": [
+        214,
+        19,
+        580,
+        992
+      ]
+    },
+    "focal": {
+      "x": 0.5046321608475594,
+      "y": 0.4818651387728389,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.4864734299516908,
+          "cy": 0.41980676328502414,
+          "rx": 0.26908212560386474,
+          "ry": 0.17681159420289855
+        },
+        "method": "alpha-rows"
+      }
+    ],
+    "watchMask": "assets/masks/sil_rose_watch.png",
+    "watch": {
+      "cx": 0.4864734299516908,
+      "cy": 0.41980676328502414,
+      "rx": 0.26908212560386474,
+      "ry": 0.17681159420289855
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "sil_noir_or": {
+    "size": [
+      1442,
+      1442
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/sil_noir_or.png",
+      "crop": [
+        0.19902912621359223,
+        0.01872399445214979,
+        0.5894590846047156,
+        0.9812760055478502
+      ],
+      "cropPx": [
+        287,
+        27,
+        850,
+        1415
+      ]
+    },
+    "focal": {
+      "x": 0.5056623510005153,
+      "y": 0.49272107214790734,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.49271844660194175,
+          "cy": 0.43515950069348125,
+          "rx": 0.2853675450762829,
+          "ry": 0.19070735090152566
+        },
+        "method": "alpha-rows"
+      }
+    ],
+    "watchMask": "assets/masks/sil_noir_or_watch.png",
+    "watch": {
+      "cx": 0.49271844660194175,
+      "cy": 0.43515950069348125,
+      "rx": 0.2853675450762829,
+      "ry": 0.19070735090152566
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "sil_bleu_clair": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/sil_bleu_clair.png",
+      "crop": [
+        0.22801932367149758,
+        0.034782608695652174,
+        0.5468599033816425,
+        0.9033816425120773
+      ],
+      "cropPx": [
+        236,
+        36,
+        566,
+        935
+      ]
+    },
+    "focal": {
+      "x": 0.5146967908329942,
+      "y": 0.47763220082596,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.46570048309178746,
+          "cy": 0.4270531400966184,
+          "rx": 0.1960966183574879,
+          "ry": 0.19153623188405794,
+          "dial": [
+            0.2995169082125604,
+            0.2647342995169082,
+            0.3323671497584541,
+            0.32463768115942027
+          ]
+        },
+        "method": "dial-hole"
+      }
+    ],
+    "watchMask": "assets/masks/sil_bleu_clair_watch.png",
+    "watch": {
+      "cx": 0.46570048309178746,
+      "cy": 0.4270531400966184,
+      "rx": 0.1960966183574879,
+      "ry": 0.19153623188405794
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "sil_nude": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [
+      {
+        "kind": "profile",
+        "x": 0.27246376811594203,
+        "y": 0.30917874396135264,
+        "w": 0.1565217391304348,
+        "h": 0.1565217391304348,
+        "weight": 26244.0,
+        "skin": 0.912,
+        "eyes": 0,
+        "reason": "on watch"
+      },
+      {
+        "kind": "profile",
+        "x": 0.4280193236714976,
+        "y": 0.30821256038647343,
+        "w": 0.18454106280193236,
+        "h": 0.18454106280193236,
+        "weight": 36481.0,
+        "skin": 0.933,
+        "eyes": 0,
+        "reason": "on watch"
+      }
+    ],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/sil_nude.png",
+      "crop": [
+        0.22028985507246376,
+        0.05893719806763285,
+        0.5381642512077295,
+        0.8966183574879227
+      ],
+      "cropPx": [
+        228,
+        61,
+        557,
+        928
+      ]
+    },
+    "focal": {
+      "x": 0.5031295320320309,
+      "y": 0.4873938946165337,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.472,
+          "cy": 0.42,
+          "rx": 0.218,
+          "ry": 0.24
+        },
+        "method": "visual inspection",
+        "auto": {
+          "cx": 0.6376811594202898,
+          "cy": 0.17971014492753623,
+          "rx": 0.03876328502415459,
+          "ry": 0.07752657004830918,
+          "dial": [
+            0.6048309178743961,
+            0.11400966183574879,
+            0.06570048309178744,
+            0.13140096618357489
+          ]
+        }
+      }
+    ],
+    "watchMask": "assets/masks/sil_nude_watch.png",
+    "watch": {
+      "cx": 0.472,
+      "cy": 0.42,
+      "rx": 0.218,
+      "ry": 0.24
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "sil_peche": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/sil_peche.png",
+      "crop": [
+        0.2251207729468599,
+        0.04154589371980676,
+        0.5594202898550724,
+        0.8869565217391304
+      ],
+      "cropPx": [
+        233,
+        43,
+        579,
+        918
+      ]
+    },
+    "focal": {
+      "x": 0.5177541436571992,
+      "y": 0.47267571574390366,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.45845410628019323,
+          "cy": 0.41642512077294686,
+          "rx": 0.1852657004830918,
+          "ry": 0.18355555555555556,
+          "dial": [
+            0.30144927536231886,
+            0.2608695652173913,
+            0.3140096618357488,
+            0.3111111111111111
+          ]
+        },
+        "method": "dial-hole"
+      }
+    ],
+    "watchMask": "assets/masks/sil_peche_watch.png",
+    "watch": {
+      "cx": 0.45845410628019323,
+      "cy": 0.41642512077294686,
+      "rx": 0.1852657004830918,
+      "ry": 0.18355555555555556
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "nf5075_noir": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/nf5075_noir.png",
+      "crop": [
+        0.2531400966183575,
+        0.022222222222222223,
+        0.4975845410628019,
+        0.9227053140096618
+      ],
+      "cropPx": [
+        262,
+        23,
+        515,
+        955
+      ]
+    },
+    "focal": {
+      "x": 0.5134414990397151,
+      "y": 0.4750752450472242,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.4652173913043478,
+          "cy": 0.4144927536231884,
+          "rx": 0.15220289855072464,
+          "ry": 0.17557487922705314,
+          "dial": [
+            0.336231884057971,
+            0.26570048309178745,
+            0.2579710144927536,
+            0.2975845410628019
+          ]
+        },
+        "method": "dial-hole"
+      }
+    ],
+    "watchMask": "assets/masks/nf5075_noir_watch.png",
+    "watch": {
+      "cx": 0.4652173913043478,
+      "cy": 0.4144927536231884,
+      "rx": 0.15220289855072464,
+      "ry": 0.17557487922705314
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "doree_noir_9093": {
+    "size": [
+      1923,
+      1082
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "focal": {
+      "x": 0.43387029275822936,
+      "y": 0.5191191440245001,
+      "source": "sobel"
+    },
+    "watches": [
+      {
+        "metal": "gold",
+        "bbox": [
+          0.3551742069682787,
+          0.033271719038817,
+          0.2782111284451378,
+          0.8770794824399261
+        ],
+        "case": {
+          "cx": 0.5057202288091524,
+          "cy": 0.48113700915197694,
+          "rx": 0.1266250650026001,
+          "ry": 0.28049907578558225
+        },
+        "method": "metal-blob"
+      }
+    ],
+    "watchMask": "assets/masks/doree_noir_9093_watch.png",
+    "watch": {
+      "cx": 0.5057202288091524,
+      "cy": 0.48113700915197694,
+      "rx": 0.1266250650026001,
+      "ry": 0.28049907578558225
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "rect_argentee_bleu": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/rect_argentee_bleu.png",
+      "crop": [
+        0.25507246376811593,
+        0.01932367149758454,
+        0.47053140096618357,
+        0.9342995169082126
+      ],
+      "cropPx": [
+        264,
+        20,
+        487,
+        967
+      ]
+    },
+    "focal": {
+      "x": 0.5044691664762664,
+      "y": 0.4793046308754694,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.45555555555555555,
+          "cy": 0.4280193236714976,
+          "rx": 0.1727246376811594,
+          "ry": 0.20977777777777776,
+          "dial": [
+            0.30917874396135264,
+            0.25024154589371983,
+            0.2927536231884058,
+            0.35555555555555557
+          ]
+        },
+        "method": "dial-hole"
+      }
+    ],
+    "watchMask": "assets/masks/rect_argentee_bleu_watch.png",
+    "watch": {
+      "cx": 0.45555555555555555,
+      "cy": 0.4280193236714976,
+      "rx": 0.1727246376811594,
+      "ry": 0.20977777777777776
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "doree_blanc": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [
+      {
+        "kind": "profile",
+        "x": 0.3323671497584541,
+        "y": 0.693719806763285,
+        "w": 0.07149758454106281,
+        "h": 0.07149758454106281,
+        "weight": 5476.0,
+        "skin": 0.26,
+        "eyes": 0
+      }
+    ],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/doree_blanc.png",
+      "crop": [
+        0.2966183574879227,
+        0.02318840579710145,
+        0.39420289855072466,
+        0.9178743961352657
+      ],
+      "cropPx": [
+        307,
+        24,
+        408,
+        950
+      ]
+    },
+    "focal": {
+      "x": 0.5000367427691167,
+      "y": 0.4723004839036591,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.4932367149758454,
+          "cy": 0.4227053140096618,
+          "rx": 0.1859903381642512,
+          "ry": 0.21545893719806763
+        },
+        "method": "alpha-rows"
+      }
+    ],
+    "watchMask": "assets/masks/doree_blanc_watch.png",
+    "watch": {
+      "cx": 0.4932367149758454,
+      "cy": 0.4227053140096618,
+      "rx": 0.1859903381642512,
+      "ry": 0.21545893719806763
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  },
+  "doree_vert": {
+    "size": [
+      1035,
+      1035
+    ],
+    "faces": [],
+    "facesRejected": [
+      {
+        "kind": "frontal",
+        "x": 0.3207729468599034,
+        "y": 0.7053140096618358,
+        "w": 0.10821256038647344,
+        "h": 0.10821256038647344,
+        "weight": 12544.0,
+        "skin": 0.673,
+        "eyes": 0
+      }
+    ],
+    "maxScale": 1.0,
+    "cut": {
+      "file": "assets/cut/doree_vert.png",
+      "crop": [
+        0.27053140096618356,
+        0.06956521739130435,
+        0.5314009661835749,
+        0.8782608695652174
+      ],
+      "cropPx": [
+        280,
+        72,
+        550,
+        909
+      ]
+    },
+    "focal": {
+      "x": 0.5478349792344875,
+      "y": 0.5003620467355303,
+      "source": "alpha"
+    },
+    "watches": [
+      {
+        "metal": "product",
+        "case": {
+          "cx": 0.45362318840579713,
+          "cy": 0.43043478260869567,
+          "rx": 0.16246376811594201,
+          "ry": 0.18868599033816424,
+          "dial": [
+            0.3159420289855073,
+            0.27053140096618356,
+            0.2753623188405797,
+            0.31980676328502416
+          ]
+        },
+        "method": "dial-hole"
+      }
+    ],
+    "watchMask": "assets/masks/doree_vert_watch.png",
+    "watch": {
+      "cx": 0.45362318840579713,
+      "cy": 0.43043478260869567,
+      "rx": 0.16246376811594201,
+      "ry": 0.18868599033816424
+    },
+    "rules": {
+      "neverCropEyes": true,
+      "noTextOverFaces": true,
+      "pushInOrigin": "focal"
+    }
+  }
+}

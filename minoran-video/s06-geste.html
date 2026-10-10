@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Minoran — s06 geste</title>
+    <link rel="preload" href="vendor/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="vendor/fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+    <link rel="stylesheet" href="shared/palette.css" />
+    <link rel="stylesheet" href="shared/base.css" />
+  </head>
+  <body>
+    <div id="s06-root" data-composition-id="s06-geste" data-start="0" data-duration="6" data-width="1920" data-height="1080">
+      <style>
+        [data-composition-id="s06-geste"] {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background: #fffdf7;
+        }
+        [data-composition-id="s06-geste"] .s06-stage {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        [data-composition-id="s06-geste"] .s06-cam {
+          position: absolute;
+          inset: 0;
+        }
+        [data-composition-id="s06-geste"] .s06-layer {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        [data-composition-id="s06-geste"] .s06-photo {
+          position: absolute;
+          width: 1311px;
+          height: 1311px;
+          -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0px, #000 240px);
+          mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0px, #000 240px);
+        }
+        [data-composition-id="s06-geste"] .s06-photo img {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+        [data-composition-id="s06-geste"] .s06-glint {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          -webkit-mask-image: url(assets/masks/apres_watch.png);
+          mask-image: url(assets/masks/apres_watch.png);
+          -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+          mix-blend-mode: screen;
+          overflow: hidden;
+        }
+        [data-composition-id="s06-geste"] .s06-band {
+          position: absolute;
+          top: 20%;
+          left: 0;
+          width: 7%;
+          height: 60%;
+          background: linear-gradient(100deg, rgba(255, 250, 238, 0) 0%, rgba(255, 250, 238, 0.7) 50%, rgba(255, 250, 238, 0) 100%);
+          opacity: 0;
+        }
+        [data-composition-id="s06-geste"] .s06-leak {
+          position: absolute;
+          left: -320px;
+          top: -180px;
+          width: 2560px;
+          height: 1440px;
+          opacity: 0.18;
+        }
+        [data-composition-id="s06-geste"] .s06-slider {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 2px;
+          height: 1080px;
+        }
+        [data-composition-id="s06-geste"] .s06-line {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 2px;
+          height: 1080px;
+          background: var(--mn-ivory);
+          box-shadow: 0 0 0 0.5px rgba(18, 16, 14, 0.22), 0 0 14px rgba(18, 16, 14, 0.32);
+        }
+        [data-composition-id="s06-geste"] .s06-handle {
+          position: absolute;
+          left: -37px;
+          top: 503px;
+          width: 76px;
+          height: 76px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.18);
+          border: 1.5px solid rgba(255, 255, 255, 0.9);
+          box-shadow: 0 0 0 0.5px rgba(18, 16, 14, 0.25), 0 12px 34px rgba(18, 16, 14, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+          -webkit-backdrop-filter: blur(10px) saturate(1.2);
+          backdrop-filter: blur(10px) saturate(1.2);
+        }
+        [data-composition-id="s06-geste"] .s06-handle::before,
+        [data-composition-id="s06-geste"] .s06-handle::after {
+          content: "";
+          position: absolute;
+          top: 31px;
+          width: 10px;
+          height: 10px;
+          border-top: 1.5px solid #fff;
+          border-left: 1.5px solid #fff;
+        }
+        [data-composition-id="s06-geste"] .s06-handle::before {
+          left: 18px;
+          transform: rotate(-45deg);
+        }
+        [data-composition-id="s06-geste"] .s06-handle::after {
+          right: 18px;
+          transform: rotate(135deg);
+        }
+        [data-composition-id="s06-geste"] .s06-label {
+          position: absolute;
+          right: 96px;
+          bottom: 80px;
+          height: 30px;
+          width: 420px;
+          overflow: hidden;
+          color: var(--mn-ink);
+          font-family: "Poppins", Arial, sans-serif;
+          font-weight: 500;
+          font-size: 20px;
+          letter-spacing: 0.3em;
+          text-transform: uppercase;
+          line-height: 30px;
+        }
+        [data-composition-id="s06-geste"] .s06-lab {
+          position: absolute;
+          right: 0;
+          top: 0;
+          white-space: nowrap;
+        }
+        [data-composition-id="s06-geste"] .s06-dot {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          margin-right: 16px;
+          vertical-align: 1px;
+          background: linear-gradient(135deg, #f6e7b8, #d9b76a 45%, #8c6a2e);
+        }
+        [data-composition-id="s06-geste"] .s06-copy {
+          position: absolute;
+          left: 96px;
+          top: 150px;
+          color: var(--mn-ink);
+        }
+        [data-composition-id="s06-geste"] .s06-copy p {
+          font-size: 104px;
+          line-height: 1.08;
+          white-space: nowrap;
+          padding-bottom: 0.08em;
+        }
+        [data-composition-id="s06-geste"] .s06-flash {
+          position: absolute;
+          inset: 0;
+          background: #ffffff;
+          opacity: 0;
+        }
+      </style>
+
+      <div id="s06-main" class="clip" data-start="0" data-duration="6" data-track-index="0">
+        <div class="s06-stage" id="s06-stage">
+          <div class="s06-cam" id="s06-cam">
+            <div class="s06-layer" id="s06-avant">
+              <div class="s06-photo" id="s06-pa"><img src="assets/img/avant.jpg" alt="" /></div>
+            </div>
+            <div class="s06-layer" id="s06-apres">
+              <div class="s06-photo" id="s06-pb">
+                <img src="assets/img/apres.jpg" alt="" />
+                <div class="s06-glint"><div class="s06-band" id="s06-band"></div></div>
+              </div>
+            </div>
+          </div>
+          <img class="s06-leak mn-screen" id="s06-leak" src="assets/tex/leak_peach.png" alt="" />
+          <div class="s06-slider" id="s06-slider" data-layout-ignore>
+            <div class="s06-line"></div>
+            <div class="s06-handle" id="s06-handle"></div>
+          </div>
+          <div class="s06-copy" id="s06-copy">
+            <p class="mn-serif" id="s06-l1">Le geste qui signe</p>
+            <p class="mn-serif" id="s06-l2">votre <span id="s06-style">style</span>.</p>
+          </div>
+          <div class="s06-label" id="s06-label" data-layout-allow-overlap>
+            <span class="s06-lab" id="s06-lab1">Sans montre</span>
+            <span class="s06-lab" id="s06-lab2"><span class="s06-dot"></span>Avec Minoran</span>
+          </div>
+        </div>
+        <div class="s06-flash" id="s06-flash"></div>
+      </div>
+
+      <script src="vendor/gsap.min.js"></script>
+      <script src="vendor/SplitText.min.js"></script>
+      <script src="vendor/CustomEase.min.js"></script>
+      <script src="vendor/DrawSVGPlugin.min.js"></script>
+      <script src="vendor/MorphSVGPlugin.min.js"></script>
+      <script src="shared/timeline.js"></script>
+      <script src="shared/framing.js"></script>
+      <script src="shared/plates.js"></script>
+      <script src="shared/palette.js"></script>
+      <script src="shared/fx.js"></script>
+      <script>
+        (function () {
+          var ID = "s06-geste";
+          MN.init();
+          var S = MN.scene(ID);
+          var C = S.cue;
+          var F = window.MINORAN_FRAMING.apres;
+          var BG = window.MINORAN_PLATES.apresBgTop;
+          // 1311 px = 0.909 do arquivo; push-in 1.10 -> 1.0 (teto do zoom seguro)
+          var P = 1311,
+            X0 = 1920 - P,
+            Y0 = -48;
+          S.root.style.background = BG;
+          ["#s06-avant", "#s06-apres"].forEach(function (q) {
+            S.q(q).style.background = BG;
+          });
+          ["#s06-pa", "#s06-pb"].forEach(function (q) {
+            var el = S.q(q);
+            el.style.left = X0 + "px";
+            el.style.top = Y0 + "px";
+          });
+          var WX = X0 + F.watch.cx * P,
+            WY = Y0 + F.watch.cy * P; // relógio em coordenadas de tela
+
+          MN.fonts(['400 italic 104px "Instrument Serif"', '500 20px "Poppins"']).then(function () {
+            var tl = gsap.timeline({ paused: true });
+            var D = S.dur;
+            var stage = S.q("#s06-stage");
+            if (!CustomEase.get("mn.slide")) CustomEase.create("mn.slide", "M0,0 C0.55,0 0.32,1 1,1");
+
+            // IN: contra-spin (-12° -> 0, 1.35 -> 1) sobre o "avant" em tela cheia
+            var inn = C("in");
+            var defs = MN.defs(S.q("#s06-main"), "s06");
+            var bxy = MN.blurFilter(defs, "s06-mbxy", "xy");
+            tl.fromTo(stage, { rotation: -12, scale: 1.35 }, { rotation: 0, scale: 1, transformOrigin: "50% 50%", duration: inn[1] - inn[0], ease: "power4.out", immediateRender: true }, inn[0]);
+            MN.blurPulse(tl, stage, bxy, { at: inn[0], dur: inn[1] - inn[0], from: 14, to: 0, axis: "xy", ease: "power3.out", clearAt: inn[1] });
+
+            // deriva leve antes do push-in
+            tl.fromTo("#s06-cam", { scale: 1.0, x: 0 }, { scale: 1.012, x: -8, transformOrigin: WX + "px " + WY + "px", duration: 2, ease: "none", immediateRender: true }, 0);
+            tl.fromTo("#s06-leak", { x: -60, opacity: 0.12 }, { x: 70, opacity: 0.2, duration: D, ease: "none", immediateRender: true }, 0);
+
+            // etiqueta "Sans montre"
+            tl.fromTo("#s06-lab1", { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "mn.out", immediateRender: true }, inn[1]);
+            gsap.set("#s06-lab2", { yPercent: 100, opacity: 0 });
+
+            // slider 1.0–2.0: 8 % -> 100 % (lento -> rápido -> assenta), revelando o "après"
+            var sl = C("slider");
+            var sd = sl[1] - sl[0];
+            var x8 = 0.08 * 1920;
+            tl.fromTo("#s06-slider", { x: x8, opacity: 0 }, { x: 1920, duration: sd, ease: "mn.slide", immediateRender: true }, sl[0]);
+            tl.to("#s06-slider", { opacity: 1, duration: 0.18, ease: "sine.out" }, sl[0]);
+            tl.fromTo("#s06-apres", { clipPath: "inset(0px " + (1920 - x8) + "px 0px 0px)" }, { clipPath: "inset(0px 0px 0px 0px)", duration: sd, ease: "mn.slide", immediateRender: true }, sl[0]);
+            tl.to("#s06-slider", { opacity: 0, duration: 0.3, ease: "sine.in" }, sl[1] - 0.05);
+
+            // 2.0: etiqueta vira "Avec Minoran" + ponto dourado; glint no relógio
+            var lb = C("label");
+            tl.to("#s06-lab1", { yPercent: -100, opacity: 0, duration: 0.35, ease: "power2.in" }, lb - 0.05);
+            tl.to("#s06-lab2", { yPercent: 0, opacity: 1, duration: 0.5, ease: "back.out(1.4)" }, lb + 0.1);
+            gsap.set("#s06-band", { rotation: 18 });
+            MN.glint(tl, S.q("#s06-band"), { at: C("glint"), dur: 0.85, fromX: 400, toX: 900, peak: 0.8 });
+
+            // push-in 1 -> 1.10 centrado no relógio (2–6)
+            var pi = C("pushIn");
+            tl.to("#s06-cam", { scale: 1.1, x: 0, transformOrigin: WX + "px " + WY + "px", duration: pi[1] - pi[0], ease: "sine.inOut" }, pi[0]);
+
+            // 2.5–4.5: "Le geste qui signe" / "votre style." — caractere a caractere, com blur
+            var l1 = MN.split(S.q("#s06-l1"), "words");
+            var l2 = MN.split(S.q("#s06-l2"), "words");
+            // "style" em gradiente ouro (escuro o bastante para AA sobre o fundo claro)
+            var st = S.q("#s06-style");
+            var sw = st.getBoundingClientRect();
+            Array.prototype.forEach.call(st.querySelectorAll(".mn-c"), function (c) {
+              var x = c.getBoundingClientRect().left - sw.left;
+              c.style.backgroundImage = "linear-gradient(100deg, #6E5222 0%, #8C6A2E 30%, #A67C35 52%, #8C6A2E 72%, #6E5222 100%)";
+              c.style.backgroundSize = sw.width + "px 100%";
+              c.style.backgroundPosition = -x + "px 0";
+              c.style.webkitBackgroundClip = "text";
+              c.style.backgroundClip = "text";
+              c.style.color = "transparent";
+              c.style.webkitTextFillColor = "transparent";
+              c.setAttribute("data-layout-allow-occlusion", "");
+            });
+            function blurIn(chars, at) {
+              tl.fromTo(chars, { opacity: 0, filter: "blur(14px)", y: 26 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.75, ease: "mn.out", stagger: 0.03, immediateRender: true }, at);
+            }
+            blurIn(l1.chars, C("line1"));
+            blurIn(l2.chars, C("line2"));
+            tl.fromTo("#s06-copy", { x: 0 }, { x: -14, duration: D - C("line1"), ease: "none", immediateRender: true }, C("line1"));
+
+            // 5.0: textos saem
+            var to = C("textOut");
+            MN.textOut(tl, l1.chars, { at: to, stagger: 0.012, dur: 0.32 });
+            MN.textOut(tl, l2.chars, { at: to + 0.05, stagger: 0.012, dur: 0.32 });
+            MN.textOut(tl, "#s06-label", { at: to, stagger: 0, dur: 0.3 });
+
+            // 5.75–6.0: OUT flash (overlay 0 -> 1 + brightness 1 -> 1.8)
+            var out = C("out");
+            tl.fromTo(stage, { filter: "brightness(1)" }, { filter: "brightness(1.8)", duration: out[1] - out[0], ease: "power2.in", immediateRender: false }, out[0]);
+            MN.flash(tl, S.q("#s06-flash"), { at: out[0], dur: out[1] - out[0], from: 0, to: 1, ease: "power2.in", immediate: false });
+
+            window.__timelines[ID] = tl;
+          });
+        })();
+      </script>
+    </div>
+  </body>
+</html>

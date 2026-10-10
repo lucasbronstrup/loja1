@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Minoran — s08 signature</title>
+    <link rel="preload" href="vendor/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="vendor/fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="vendor/fonts/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+    <link rel="stylesheet" href="shared/palette.css" />
+    <link rel="stylesheet" href="shared/base.css" />
+  </head>
+  <body>
+    <div id="s08-root" data-composition-id="s08-signature" data-start="0" data-duration="6" data-width="1920" data-height="1080">
+      <style>
+        [data-composition-id="s08-signature"] {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background: var(--mn-ink);
+        }
+        [data-composition-id="s08-signature"] .s08-bg {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 1100px 700px at 960px 400px, #241e17 0%, #17130f 50%, #0e0c0a 100%);
+        }
+        [data-composition-id="s08-signature"] .s08-leak {
+          position: absolute;
+          left: -320px;
+          top: -180px;
+          width: 2560px;
+          height: 1440px;
+          opacity: 0.2;
+        }
+        [data-composition-id="s08-signature"] .s08-bokeh {
+          position: absolute;
+          inset: 0;
+          mix-blend-mode: screen;
+        }
+        [data-composition-id="s08-signature"] .s08-burst {
+          position: absolute;
+          left: 360px;
+          top: -211px;
+          width: 1200px;
+          height: 1200px;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(255, 236, 186, 0.95) 0%, rgba(232, 196, 120, 0.6) 22%, rgba(196, 150, 70, 0.22) 50%, rgba(140, 106, 46, 0) 100%);
+          mix-blend-mode: screen;
+          opacity: 0;
+        }
+        [data-composition-id="s08-signature"] .s08-parts {
+          position: absolute;
+          inset: 0;
+          mix-blend-mode: screen;
+        }
+        [data-composition-id="s08-signature"] .s08-p {
+          position: absolute;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, #fff3cf 0%, #e3c27a 55%, rgba(227, 194, 122, 0) 100%);
+        }
+        [data-composition-id="s08-signature"] .s08-svg {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1920px;
+          height: 1080px;
+          overflow: visible;
+        }
+        [data-composition-id="s08-signature"] .s08-glow {
+          position: absolute;
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(246, 231, 184, 0.75) 0%, rgba(217, 183, 106, 0.3) 45%, rgba(217, 183, 106, 0) 100%);
+          mix-blend-mode: screen;
+          opacity: 0;
+        }
+        [data-composition-id="s08-signature"] .s08-brand {
+          position: absolute;
+          left: 0;
+          width: 1920px;
+          text-align: center;
+          font-family: "Poppins", Arial, sans-serif;
+          font-weight: 500;
+          font-size: 96px;
+          line-height: 1;
+          letter-spacing: 0.32em;
+          color: var(--mn-ivory);
+          white-space: nowrap;
+          margin: 0;
+        }
+        /* folga na máscara de cada caractere para o blur não ser cortado */
+        [data-composition-id="s08-signature"] .s08-c-mask {
+          padding: 0.3em 0.3em;
+          margin: -0.3em -0.3em;
+        }
+        [data-composition-id="s08-signature"] .s08-brand .s08-word {
+          display: inline-block;
+          margin-right: -0.32em;
+        }
+        [data-composition-id="s08-signature"] .s08-tag {
+          position: absolute;
+          left: 0;
+          width: 1920px;
+          text-align: center;
+          font-size: 64px;
+          color: var(--mn-ivory);
+          white-space: nowrap;
+          margin: 0;
+          line-height: 1.1;
+        }
+        [data-composition-id="s08-signature"] .s08-url {
+          position: absolute;
+          left: 0;
+          width: 1920px;
+          text-align: center;
+          font-family: "Poppins", Arial, sans-serif;
+          font-weight: 400;
+          font-size: 30px;
+          letter-spacing: 0.06em;
+          color: #d9b76a;
+          white-space: nowrap;
+          margin: 0;
+          line-height: 1.2;
+        }
+        [data-composition-id="s08-signature"] .s08-underline {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1920px;
+          height: 1080px;
+          overflow: visible;
+        }
+        [data-composition-id="s08-signature"] .s08-dark {
+          position: absolute;
+          inset: 0;
+          background: var(--mn-ink);
+        }
+      </style>
+
+      <div id="s08-main" class="clip" data-start="0" data-duration="6" data-track-index="0">
+        <div class="s08-bg"></div>
+        <img class="s08-leak mn-screen" id="s08-leak" src="assets/tex/leak_gold.png" alt="" />
+        <img class="s08-leak mn-screen" id="s08-leak2" src="assets/tex/leak_rose.png" alt="" style="opacity: 0.12" />
+        <div class="s08-bokeh" id="s08-bokeh" data-layout-ignore></div>
+        <div class="s08-burst" id="s08-burst"></div>
+        <div class="s08-parts" id="s08-parts" data-layout-ignore></div>
+        <div class="s08-glow" id="s08-glow"></div>
+        <svg class="s08-svg" id="s08-svg" viewBox="0 0 1920 1080" aria-hidden="true">
+          <defs>
+            <linearGradient id="s08-goldstroke" x1="700" y1="130" x2="1220" y2="650" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#8C6A2E" />
+              <stop offset="0.38" stop-color="#D9B76A" />
+              <stop offset="0.55" stop-color="#F6E7B8" />
+              <stop offset="1" stop-color="#B8893B" />
+            </linearGradient>
+          </defs>
+          <g id="s08-dial">
+            <path id="s08-circle" d="" fill="none" stroke="url(#s08-goldstroke)" stroke-width="2" vector-effect="non-scaling-stroke" />
+            <g id="s08-hand">
+              <line id="s08-hand-line" x1="0" y1="0" x2="0" y2="0" stroke="#E9CF92" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+              <circle id="s08-hand-cw" cx="0" cy="0" r="9" fill="none" stroke="#E9CF92" stroke-width="2" vector-effect="non-scaling-stroke" />
+              <circle id="s08-hand-pin" cx="0" cy="0" r="5" fill="#F6E7B8" />
+            </g>
+          </g>
+        </svg>
+        <h1 class="s08-brand" id="s08-brand"><span class="s08-word" id="s08-word">MINORAN</span></h1>
+        <p class="mn-serif s08-tag" id="s08-tag">L’élégance, simplement.</p>
+        <p class="s08-url" id="s08-url"><span id="s08-urltext">minoran.com</span></p>
+        <svg class="s08-underline" viewBox="0 0 1920 1080" aria-hidden="true"><path id="s08-ul" d="" fill="none" stroke="#C9A85E" stroke-width="1.5" stroke-linecap="round" /></svg>
+        <div class="s08-dark" id="s08-dark"></div>
+      </div>
+
+      <script src="vendor/gsap.min.js"></script>
+      <script src="vendor/SplitText.min.js"></script>
+      <script src="vendor/CustomEase.min.js"></script>
+      <script src="vendor/DrawSVGPlugin.min.js"></script>
+      <script src="vendor/MorphSVGPlugin.min.js"></script>
+      <script src="shared/timeline.js"></script>
+      <script src="shared/framing.js"></script>
+      <script src="shared/palette.js"></script>
+      <script src="shared/fx.js"></script>
+      <script>
+        (function () {
+          var ID = "s08-signature";
+          MN.init();
+          var S = MN.scene(ID);
+          var C = S.cue;
+          // bloco da marca centralizado na metade superior: centro em y ≈ 36 %
+          var BY = Math.round(1080 * 0.36);
+          var CX = 960,
+            R = 260,
+            HAND = 224,
+            TAIL = 46;
+
+          MN.fonts(['500 96px "Poppins"', '400 30px "Poppins"', '400 italic 64px "Instrument Serif"']).then(function () {
+            var tl = gsap.timeline({ paused: true });
+            var D = S.dur;
+            var brand = S.q("#s08-brand"),
+              word = S.q("#s08-word");
+            // tipografia: medidas de layout uma única vez, no setup
+            brand.style.top = BY - 48 + "px";
+            S.q("#s08-tag").style.top = BY + 92 + "px";
+            S.q("#s08-url").style.top = BY + 196 + "px";
+            var wb = word.getBoundingClientRect();
+            // mini mostrador ao lado da marca (o ponteiro do s01 termina aqui)
+            var MINI_R = 26,
+              GAP = 34;
+            var lockW = 2 * MINI_R + GAP + wb.width - 0.32 * 96;
+            var shift = (2 * MINI_R + GAP) / 2;
+            brand.style.paddingLeft = 2 * shift + "px";
+            brand.style.boxSizing = "border-box";
+            var MX = CX - lockW / 2 + MINI_R,
+              MY = BY;
+            var k = MINI_R / R; // escala do colapso
+            // geometria do mostrador grande (mesma do s01)
+            S.q("#s08-circle").setAttribute("d", MN.roundRectPath(CX, BY, 2 * R, 2 * R, R));
+            var hl = S.q("#s08-hand-line");
+            hl.setAttribute("x1", CX);
+            hl.setAttribute("x2", CX);
+            hl.setAttribute("y1", BY + TAIL - 9);
+            hl.setAttribute("y2", BY - HAND);
+            S.q("#s08-hand-cw").setAttribute("cx", CX);
+            S.q("#s08-hand-cw").setAttribute("cy", BY + TAIL);
+            S.q("#s08-hand-pin").setAttribute("cx", CX);
+            S.q("#s08-hand-pin").setAttribute("cy", BY);
+            // sublinhado do minoran.com
+            var url = S.q("#s08-url");
+            var ub = S.q("#s08-urltext").getBoundingClientRect();
+            S.q("#s08-ul").setAttribute("d", "M" + (ub.left + 4) + "," + (ub.bottom + 8) + " L" + (ub.right - 4) + "," + (ub.bottom + 8));
+            var glow = S.q("#s08-glow");
+            glow.style.left = MX - 80 + "px";
+            glow.style.top = MY - 80 + "px";
+
+            // IN: nasce do escuro
+            var inn = C("in");
+            MN.flash(tl, S.q("#s08-dark"), { at: inn[0], dur: inn[1] - inn[0], from: 1, to: 0, ease: "power2.out" });
+
+            // ambiente: leaks em deriva lenta + bokeh semeado
+            tl.fromTo("#s08-leak", { x: -60, scale: 1.04 }, { x: 70, scale: 1.1, duration: D, ease: "none", immediateRender: true }, 0);
+            tl.fromTo("#s08-leak2", { x: 80, y: 20 }, { x: -60, y: -20, duration: D, ease: "none", immediateRender: true }, 0);
+            MN.bokehField(tl, S.q("#s08-bokeh"), { count: 22, seed: 4208, w: 1920, h: 1080, size: [30, 140], opacity: [0.1, 0.36], drift: [60, 36], rise: 34, dur: D });
+
+            // 0.0: explosão de luz dourada radial + 60 partículas semeadas
+            var bu = C("burst");
+            var burst = S.q("#s08-burst");
+            burst.style.left = CX - 600 + "px";
+            burst.style.top = BY - 600 + "px";
+            tl.fromTo(burst, { scale: 0.2, opacity: 0.9 }, { scale: 2.2, opacity: 0, duration: bu[1] - bu[0], ease: "expo.out", immediateRender: true }, bu[0]);
+            var rr = MN.rng(608);
+            var parts = S.q("#s08-parts");
+            for (var i = 0; i < 60; i++) {
+              var p = document.createElement("div");
+              p.className = "s08-p";
+              var sz = MN.range(rr, 3, 9);
+              p.style.width = p.style.height = sz + "px";
+              p.style.left = CX - sz / 2 + "px";
+              p.style.top = BY - sz / 2 + "px";
+              parts.appendChild(p);
+              var a = rr() * Math.PI * 2,
+                dist = MN.range(rr, 160, 760);
+              var life = MN.range(rr, 0.9, 1.6);
+              tl.fromTo(p, { x: 0, y: 0, opacity: 0.95, scale: 1 }, { x: Math.cos(a) * dist, y: Math.sin(a) * dist * 0.8, scale: 0.4, duration: life, ease: "expo.out", immediateRender: true }, bu[0]);
+              tl.to(p, { opacity: 0, duration: life * 0.6, ease: "power2.in" }, bu[0] + life * 0.4);
+            }
+
+            // 0.1–1.1: o ponteiro volta e dá 360°, desenhando o círculo (mesma duração e ease, sem callbacks)
+            var hs = C("handSweep");
+            var hd = hs[1] - hs[0];
+            var hand = S.q("#s08-hand");
+            gsap.set(hand, { svgOrigin: CX + " " + BY });
+            tl.fromTo(hand, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "sine.out", immediateRender: true }, hs[0]);
+            tl.fromTo(hand, { rotation: 0 }, { rotation: 360, svgOrigin: CX + " " + BY, duration: hd, ease: "mn.inOut", immediateRender: true }, hs[0]);
+            tl.fromTo("#s08-circle", { drawSVG: "0%" }, { drawSVG: "100%", duration: hd, ease: "mn.inOut", immediateRender: true }, hs[0]);
+
+            // 1.0–1.9: o círculo colapsa (vira o mini mostrador ao lado da marca) e nasce a marca
+            var br = C("brand");
+            var bd = br[1] - br[0];
+            var dial = S.q("#s08-dial");
+            gsap.set(dial, { svgOrigin: CX + " " + BY });
+            tl.to(dial, { scale: k, x: MX - CX, y: MY - BY, svgOrigin: CX + " " + BY, duration: bd * 0.8, ease: "mn.inOut" }, br[0]);
+            // o ponteiro do mini mostrador é mais longo relativo ao aro (lê bem em 52 px)
+            tl.to(hl, { attr: { y2: BY - R * 0.86 }, duration: bd * 0.8, ease: "mn.inOut" }, br[0]);
+            tl.to(["#s08-hand-cw"], { opacity: 0, duration: 0.3, ease: "sine.in" }, br[0]);
+
+            // wordmark "MINORAN" montado por caractere: tracking 1.2em -> .32em, blur 18 -> 0, stagger do centro
+            var sp = new SplitText(word, { type: "words,chars", mask: "chars", charsClass: "s08-c" });
+            var n = sp.chars.length;
+            var wbox = word.getBoundingClientRect();
+            var cx0 = sp.chars.map(function (c) {
+              return c.getBoundingClientRect().left - wbox.left;
+            });
+            // 1.75: sheen metálico atravessa a marca
+            var gw = (function () {
+              var box = wbox;
+              sp.chars.forEach(function (c, ci) {
+                var x = cx0[ci];
+                c.style.backgroundImage = "linear-gradient(100deg, rgba(255,250,236,0) 0%, rgba(255,250,236,0) 35%, rgba(255,246,222,1) 50%, rgba(255,250,236,0) 65%, rgba(255,250,236,0) 100%), linear-gradient(180deg, #F5F0E8, #E9DFCD)";
+                c.style.backgroundSize = 0.5 * box.width + "px 100%, " + box.width + "px 100%";
+                c.style.backgroundRepeat = "no-repeat";
+                c.style.backgroundPosition = "calc(var(--g, -9999px) - " + x + "px) 0, " + -x + "px 0";
+                c.style.webkitBackgroundClip = "text";
+                c.style.backgroundClip = "text";
+                c.style.color = "transparent";
+                c.style.webkitTextFillColor = "transparent";
+                c.setAttribute("data-layout-allow-occlusion", "");
+              });
+              return box.width;
+            })();
+            sp.chars.forEach(function (c, i) {
+              var off = (i - (n - 1) / 2) * (1.2 - 0.32) * 96;
+              var dl = br[0] + Math.abs(i - (n - 1) / 2) * 0.05;
+              tl.fromTo(sp.masks[i], { x: off }, { x: 0, duration: bd * 0.85, ease: "mn.out", immediateRender: true }, dl);
+              tl.fromTo(c, { filter: "blur(18px)", opacity: 0 }, { filter: "blur(0px)", opacity: 1, duration: bd * 0.85, ease: "mn.out", immediateRender: true }, dl);
+            });
+
+            tl.fromTo(brand, { "--g": -0.6 * gw + "px" }, { "--g": 1.2 * gw + "px", duration: 0.9, ease: "power2.inOut", immediateRender: true }, C("sheen"));
+            tl.fromTo(dial, { opacity: 1 }, { opacity: 1, duration: 0.01, immediateRender: true }, 0);
+
+            // 2.25: assinatura
+            var tg = MN.split(S.q("#s08-tag"), "words");
+            MN.splitReveal(tl, tg.chars, { at: C("tagline"), dur: 0.7, stagger: 0.022 });
+            // 2.75: minoran.com + sublinhado em DrawSVG
+            var ur = C("url");
+            tl.fromTo(url, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "mn.out", immediateRender: true }, ur);
+            tl.fromTo("#s08-ul", { drawSVG: "50% 50%" }, { drawSVG: "0% 100%", duration: 0.7, ease: "mn.inOut", immediateRender: true }, ur + 0.15);
+
+            // 4.0: tique final — o ponteiro ao lado da marca salta 6°, com pulso de brilho
+            var ft = C("finalTick");
+            tl.to(hand, { rotation: 366, svgOrigin: CX + " " + BY, duration: MN.TICK_DUR, ease: "mn.tick" }, ft);
+            tl.fromTo(glow, { opacity: 0, scale: 0.6 }, { opacity: 0.9, scale: 1.1, duration: 0.12, ease: "power2.out", immediateRender: true }, ft);
+            tl.to(glow, { opacity: 0, scale: 1.5, duration: 0.9, ease: "power2.out" }, ft + 0.12);
+
+            // deriva final: nada parado
+            tl.fromTo(["#s08-brand", "#s08-tag", "#s08-url"], { y: 0 }, { y: -6, duration: D - 2, ease: "none", immediateRender: false }, 2);
+            tl.fromTo("#s08-svg", { y: 0 }, { y: -6, duration: D - 2, ease: "none", immediateRender: true }, 2);
+
+            window.__timelines[ID] = tl;
+          });
+        })();
+      </script>
+    </div>
+  </body>
+</html>

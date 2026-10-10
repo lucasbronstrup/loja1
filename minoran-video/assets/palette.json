@@ -1,0 +1,257 @@
+{
+  "brand": {
+    "ivory": "#F5F0E8",
+    "ivory-flash": "#FFF8EE",
+    "ink": "#12100E",
+    "ink-deep": "#0E0C0A",
+    "green": "#1E4A3A",
+    "gold-1": "#8C6A2E",
+    "gold-2": "#D9B76A",
+    "gold-3": "#F6E7B8",
+    "gold-4": "#B8893B",
+    "silver-1": "#8E959E",
+    "silver-2": "#E6E9EE",
+    "silver-3": "#A9AFB8"
+  },
+  "capture": {
+    "accent": "#C6A663",
+    "colors": [
+      "#171717",
+      "#FFFFFF",
+      "#000000",
+      "#626262",
+      "#F5F5F5",
+      "#E0E0E0",
+      "#BCC0C3",
+      "#C6A663",
+      "#BD8D7F",
+      "#166D00"
+    ]
+  },
+  "measured": {
+    "straps": {
+      "creme": {
+        "hex": "#E8D9C4",
+        "clusters": [
+          {
+            "hex": "#F2E3CF",
+            "share": 0.581
+          },
+          {
+            "hex": "#D4C1AA",
+            "share": 0.264
+          },
+          {
+            "hex": "#A08C79",
+            "share": 0.126
+          },
+          {
+            "hex": "#523D2D",
+            "share": 0.029
+          }
+        ],
+        "source": "sil_creme"
+      },
+      "rose": {
+        "hex": "#EBC2B7",
+        "clusters": [
+          {
+            "hex": "#F6D4C8",
+            "share": 0.516
+          },
+          {
+            "hex": "#D9A69E",
+            "share": 0.332
+          },
+          {
+            "hex": "#B9796D",
+            "share": 0.122
+          },
+          {
+            "hex": "#713527",
+            "share": 0.03
+          }
+        ],
+        "source": "sil_rose"
+      },
+      "bleu-clair": {
+        "hex": "#A9BDE9",
+        "clusters": [
+          {
+            "hex": "#BBCDF4",
+            "share": 0.435
+          },
+          {
+            "hex": "#90A6DB",
+            "share": 0.304
+          },
+          {
+            "hex": "#5D76B4",
+            "share": 0.18
+          },
+          {
+            "hex": "#273D78",
+            "share": 0.081
+          }
+        ],
+        "source": "sil_bleu_clair"
+      },
+      "noir-or": {
+        "hex": "#21201E",
+        "clusters": [
+          {
+            "hex": "#181716",
+            "share": 0.487
+          },
+          {
+            "hex": "#32302D",
+            "share": 0.261
+          },
+          {
+            "hex": "#F6E1B7",
+            "share": 0.17
+          },
+          {
+            "hex": "#BA9A6D",
+            "share": 0.083
+          }
+        ],
+        "source": "sil_noir_or"
+      },
+      "nude": {
+        "hex": "#D6AA91",
+        "clusters": [
+          {
+            "hex": "#CD9E84",
+            "share": 0.347
+          },
+          {
+            "hex": "#E0B69F",
+            "share": 0.339
+          },
+          {
+            "hex": "#EECDB7",
+            "share": 0.217
+          },
+          {
+            "hex": "#A47253",
+            "share": 0.098
+          }
+        ],
+        "source": "sil_nude"
+      },
+      "peche": {
+        "hex": "#E2A279",
+        "clusters": [
+          {
+            "hex": "#F0B289",
+            "share": 0.401
+          },
+          {
+            "hex": "#D29167",
+            "share": 0.35
+          },
+          {
+            "hex": "#A66339",
+            "share": 0.152
+          },
+          {
+            "hex": "#F8E3C0",
+            "share": 0.097
+          }
+        ],
+        "source": "sil_peche"
+      }
+    },
+    "dials": {
+      "dial-bleu": {
+        "hex": "#102970",
+        "clusters": [
+          {
+            "hex": "#091855",
+            "share": 0.445
+          },
+          {
+            "hex": "#193F91",
+            "share": 0.353
+          },
+          {
+            "hex": "#EAEDEC",
+            "share": 0.102
+          },
+          {
+            "hex": "#5C84D8",
+            "share": 0.1
+          }
+        ],
+        "source": "rect_argentee_bleu"
+      },
+      "dial-noir": {
+        "hex": "#2D2D2C",
+        "clusters": [
+          {
+            "hex": "#222221",
+            "share": 0.491
+          },
+          {
+            "hex": "#444443",
+            "share": 0.225
+          },
+          {
+            "hex": "#717170",
+            "share": 0.188
+          },
+          {
+            "hex": "#EBEAE5",
+            "share": 0.096
+          }
+        ],
+        "source": "nf5075_noir"
+      },
+      "dial-blanc": {
+        "hex": "#F3EACF",
+        "clusters": [
+          {
+            "hex": "#F7F4E9",
+            "share": 0.574
+          },
+          {
+            "hex": "#E9D08A",
+            "share": 0.217
+          },
+          {
+            "hex": "#A18147",
+            "share": 0.148
+          },
+          {
+            "hex": "#382410",
+            "share": 0.061
+          }
+        ],
+        "source": "doree_blanc"
+      },
+      "dial-vert": {
+        "hex": "#2B4F33",
+        "clusters": [
+          {
+            "hex": "#183C23",
+            "share": 0.465
+          },
+          {
+            "hex": "#486C4C",
+            "share": 0.303
+          },
+          {
+            "hex": "#57C177",
+            "share": 0.136
+          },
+          {
+            "hex": "#EAE9BA",
+            "share": 0.096
+          }
+        ],
+        "source": "doree_vert"
+      }
+    }
+  }
+}
